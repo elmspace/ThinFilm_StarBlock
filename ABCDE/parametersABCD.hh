@@ -1,7 +1,7 @@
 void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,double **chiMatrix){
   
   int Ds;
-  double xAB,xAD,xAE,xBE,xBD,xED;
+  double xAB;
   double zz;
 
   zz=3.0;
@@ -38,60 +38,11 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   //set to negative to randomize
   Iomega=1.1;
   
-  // Force=1 to make the particles take the profile
-  forceD=1.0;
-  forceE=1.0;
-  // What shape should the protein be: 1=on 0=off
-  
-  //set the morphology 1=on 0=off
-  LAM=0.0;
-  HEX=1.0;
-  BCC=0.0;
+ 
   
   dxyz[0]=(2.0*2.2)/Nx;
   dxyz[1]=(2.0*2.2)/Ny;
   dxyz[2]=(zz*2.2)/22;
-  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-  // For Cube
-  radDx=100;
-  radDy=100;
-  radDz=5;
-
-  radEx=100;
-  radEy=100;
-  radEz=5;
-  
-  normlD=1.0/2.0;
-  normlE=1.0/2.0;
-
-  widthD=1.0;
-  widthE=1.0;
-  
-  sigmaDx=Nx/2;
-  sigmaDy=Ny/2;
-  sigmaDz=0;
-
-  sigmaEx=Nx/2;
-  sigmaEy=Ny/2;
-  sigmaEz=Nz;
-
-  if (forceD>0.5){
-    p2ave=VolFracD(dxyz);   //D
-  }else{
-    p2ave=0.0000001;        //D
-  }
-  if (forceE>0.5){
-    p3ave=VolFracE(dxyz);   //E
-  }else{
-    p3ave=0.0000001;       //E
-  }
- 
-  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-  p1ave=1.0-(p2ave+p3ave);
-  //std::cout<<p1ave<<std::endl;
-
  
   f[0]=Ns[0]/Ds;  // fA1
   f[1]=Ns[1]/Ds;  // fA2
@@ -105,57 +56,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   // Setting up the individual chi values
   chi[0]=0.0;  
   chi[1]=0.0;  
-  chi[2]=0.0;  
-  chi[3]=xAB;  
-  chi[4]=xAB;  
-  chi[5]=xAB;  
-  chi[6]=xAB;  
-  chi[7]=xAE;  
-  chi[8]=xAD;
- 
-  chi[9]=0.0;
-  chi[10]=0.0;
-  chi[11]=xAB; 
-  chi[12]=xAB;
-  chi[13]=xAB;
-  chi[14]=xAB;
-  chi[15]=xAE; 
-  chi[16]=xAD; 
   
-  chi[17]=0.0;
-  chi[18]=xAB;
-  chi[19]=xAB;
-  chi[20]=xAB;
-  chi[21]=xAB;
-  chi[22]=xAE;
-  chi[23]=xAD;
-  
-  chi[24]=xAB;
-  chi[25]=xAB; 
-  chi[26]=xAB;
-  chi[27]=xAB;
-  chi[28]=xAE;
-  chi[29]=xAD;
-  
-  chi[30]=0.0;
-  chi[31]=0.0;
-  chi[32]=0.0;
-  chi[33]=xBE;
-  chi[34]=xBD;
-  
-  chi[35]=0.0; 
-  chi[36]=0.0;
-  chi[37]=xBE; 
-  chi[38]=xBD; 
-  
-  chi[39]=0.0;
-  chi[40]=xBE; 
-  chi[41]=xBD; 
-  
-  chi[42]=xBE; 
-  chi[43]=xBD; 
-  
-  chi[44]=xED; 
   
 
   //++++++++++++++++++++++++++++++++++++++++++++++++

@@ -31,7 +31,7 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
       }
     }
     
-    for(s=0;s<((int)Ns);s++){               // Why not to Ns+1 ??
+    for(s=0;s<((int)Ns);s++){ 
       
       for(i=0;i<Nx;i++){
 	for(j=0;j<Ny;j++){
@@ -74,7 +74,7 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
       }
     }
 
-    for(s=0;s<(Ns);s++){                   // why start from Ns and not 0 again?
+    for(s=0;s<(Ns);s++){
       
       for(i=0;i<Nx;i++){
 	for(j=0;j<Ny;j++){

@@ -1,14 +1,10 @@
 
 #include "./global.hh"
-#include "./ABCDE/Shapes.hh"
-#include "./ABCDE/VolFrac.hh"
 #include "./ABCDE/parametersABCD.hh"
 #include "./ABCDE/WaveVectors.hh"
 #include "./ABCDE/omega.hh"
 #include "./ABCDE/solvediffeq.hh"
 #include "./ABCDE/ConcAB.hh"
-#include "./ABCDE/ConcE.hh"
-#include "./ABCDE/ConcD.hh"
 #include "./ABCDE/fEhomo.hh"
 #include "./ABCDE/Incomp.hh"
 #include "./ABCDE/FreeEnergy_Box_Edition.hh"
@@ -36,7 +32,7 @@ int main(){
   w=create_4d_double_array(ChainType,Nx,Ny,Nz,"w");
   eta=create_3d_double_array(Nx,Ny,Nz,"eta");
   phi=create_4d_double_array(ChainType,Nx,Ny,Nz,"phi");
-  chi=create_1d_double_array(45,"chi"); // There are only 45 interactions
+  chi=create_1d_double_array(2,"chi");
   f=create_1d_double_array(ChainType,"f");
   Ns=create_1d_double_array(ChainType,"Ns");
   k_vector=create_3d_double_array(Nx,Ny,Nz,"k_vector");

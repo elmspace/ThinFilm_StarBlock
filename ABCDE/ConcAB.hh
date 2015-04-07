@@ -134,13 +134,6 @@ double ConcAB(double ****phi,double ****w,double *Ns,double ds,double ***k_vecto
   }
   // Normalizing with respect to the volume of the box
   Q/=((dxyz[0]*Nx)*(dxyz[1]*Ny)*(dxyz[2]*Nz));
-  //std::cout<<Q<<std::endl;
-  //std::cout<<"+++++"<<std::endl;
-
-
- 
-
-
 
 
   
@@ -233,14 +226,14 @@ double ConcAB(double ****phi,double ****w,double *Ns,double ds,double ***k_vecto
 	}
 
 
-	phi[0][i][j][l]*=(p1ave/Q);
-	phi[1][i][j][l]*=(p1ave/Q);
-	phi[2][i][j][l]*=(p1ave/Q);
-	phi[3][i][j][l]*=(p1ave/Q);
-	phi[4][i][j][l]*=(p1ave/Q);
-	phi[5][i][j][l]*=(p1ave/Q);
-	phi[6][i][j][l]*=(p1ave/Q);
-	phi[7][i][j][l]*=(p1ave/Q);
+	phi[0][i][j][l]*=(1.0/Q);
+	phi[1][i][j][l]*=(1.0/Q);
+	phi[2][i][j][l]*=(1.0/Q);
+	phi[3][i][j][l]*=(1.0/Q);
+	phi[4][i][j][l]*=(1.0/Q);
+	phi[5][i][j][l]*=(1.0/Q);
+	phi[6][i][j][l]*=(1.0/Q);
+	phi[7][i][j][l]*=(1.0/Q);
 
       }
     }

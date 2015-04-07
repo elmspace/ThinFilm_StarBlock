@@ -13,8 +13,8 @@ double size_adjust_2D_xy(double ****w, double ****phi, double ***eta, double *Ns
   box_fE=create_1d_double_array(8,"box_fE");
   dxyz_temp=create_1d_double_array(3,"dxyz_temp");
 
-  delx=0.0015625;
-  dely=0.0015625;
+  delx=0.01/Nx;
+  dely=0.01/Ny;
  
   // std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   l=0;
@@ -37,7 +37,10 @@ double size_adjust_2D_xy(double ****w, double ****phi, double ***eta, double *Ns
 	    for(kk=0;kk<Nz;kk++){
 	      for(ll=0;ll<ChainType;ll++){
 		w_temp[ll][ii][jj][kk]=w[ll][ii][jj][kk];
-	      }}}}
+	      }
+	    }
+	  }
+	}
 	
 	dxyz_temp[0]+=box_x[l];
 	dxyz_temp[1]+=box_y[l];

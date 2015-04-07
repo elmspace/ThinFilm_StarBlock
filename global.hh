@@ -12,21 +12,18 @@
 #define Ny 32
 #define Nz 32
 
-#define ChainType 10
+#define ChainType 8
 #define Pi 3.14159
 
-double Iomega,forceD,forceE;
-double LAM, HEX, BCC;
-double box_min;
+// Trigger parameters
+int Iomega;
+int box_min;
 
+// FFTW parameters
 fftw_plan forward_plan, inverse_plan;
 double *input_q, *transformed_q, *final_q;
 
-double pA1ave, pA2ave, pA3ave, pA4ave, pB1ave, pB2ave,pB3ave, pB4ave, pDave, pEave;
+// Other parameters
+double pA1ave, pA2ave, pA3ave, pA4ave, pB1ave, pB2ave,pB3ave, pB4ave;
 
-double p1ave, p2ave, p3ave;
 
-double normlD, normlE, widthE, widthD;
-double sigmaEx, sigmaEy, sigmaEz;
-double sigmaDx, sigmaDy, sigmaDz;
-double radDx,radDy,radDz,radEx,radEy,radEz;
