@@ -54,9 +54,9 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
       fES=0.0;
       fEsurf=0.0;
       deltaW=0.0;
-      std::cout<<"1"<<std::endl;
+
       QAB=ConcAB(phi,w,Ns,ds,k_vector,dxyz);
-      std::cout<<"1"<<std::endl;
+
       Incomp(eta,phi,delphi);
     
       // Initializing newW

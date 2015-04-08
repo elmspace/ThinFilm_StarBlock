@@ -28,7 +28,7 @@ int main(){
   double ***k_vector;
   double *dxyz;
   double **chiMatrix;
-  int FFTW_MEASURE;
+  //int FFTW_MEASURE;
   
   w=create_4d_double_array(ChainType,Nx,Ny,Nz,"w");
   eta=create_3d_double_array(Nx,Ny,Nz,"eta");
@@ -86,13 +86,13 @@ int main(){
   iseed=time(&t);
   srand48(iseed);
 
-  input_q=(double*)fftw_malloc(sizeof(double)*Nx*Ny*Nz);
-  transformed_q=(double*)fftw_malloc(sizeof(double)*Nx*Ny*Nz);
-  final_q=(double*)fftw_malloc(sizeof(double)*Nx*Ny*Nz);
+  input_q=(double*)fftw_malloc(sizeof(double)*(Nx*Ny*Nz));
+  transformed_q=(double*)fftw_malloc(sizeof(double)*(Nx*Ny*Nz));
+  final_q=(double*)fftw_malloc(sizeof(double)*(Nx*Ny*Nz));
 
 
-  forward_plan=fftw_plan_r2r_3d(Nx,Ny,Nz,input_q,transformed_q,FFTW_REDFT10,FFTW_REDFT10,FFTW_REDFT10,FFTW_MEASURE);
-  inverse_plan=fftw_plan_r2r_3d(Nx,Ny,Nz,transformed_q,final_q,FFTW_REDFT01,FFTW_REDFT01,FFTW_REDFT01,FFTW_MEASURE);
+  forward_plan=fftw_plan_r2r_3d(Nx,Ny,Nz,input_q,transformed_q,FFTW_REDFT10,FFTW_REDFT10,FFTW_REDFT10,FFTW_PRESERVE_INPUT);
+  inverse_plan=fftw_plan_r2r_3d(Nx,Ny,Nz,transformed_q,final_q,FFTW_REDFT01,FFTW_REDFT01,FFTW_REDFT01,FFTW_PRESERVE_INPUT);
   
   parametersAB(chi,f,ds,Ns,dxyz,chiMatrix,h);
  

@@ -1,21 +1,23 @@
-//#include </usr/local/include/fftw3.h>  // This is for My Mac Pro
+#include </usr/local/include/fftw3.h>  // This is for My Mac Pro
 //#include </opt/sharcnet/fftw/3.3.2/intel/include/fftw3.h> // This is for Sharcnet
 //#include </usr/include/fftw3.h> // This is for use on Landua
-#include </usr/local/include/fftw3.h> // This is for elmspace2
+//#include </usr/local/include/fftw3.h> // This is for elmspace2
 
 
 #include <stdio.h>     //Include the standard input/output libraries
 #include <iostream>  //Cout and Cin etc.
 #include <fstream>
+#include <complex>
+#include <time.h>
 #include <stdlib.h>    //Include standard fucntion libraries
 #include <math.h>      //Use the math function libraries
 #include "./include/smemory.hh"  //Use my custom memory handling class
-
+using namespace std;
  
 
-#define Nx 22
-#define Ny 22
-#define Nz 22
+#define Nx 26
+#define Ny 26
+#define Nz 26
 
 #define ChainType 8
 #define Pi 3.14159
