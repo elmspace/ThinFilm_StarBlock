@@ -2,48 +2,7 @@ double ConcAB(double ****phi,double ****w,double *Ns,double ds,double ***k_vecto
 
   int         i,j,l,s;
   double      Q;
-  double      ****qA1,****qA2,****qA3,****qA4;
-  double      ****qB1,****qB2,****qB3,****qB4;
-  double      ****qdagA1,****qdagA2,****qdagA3,****qdagA4;
-  double      ****qdagB1,****qdagB2,****qdagB3,****qdagB4;
-  double      ***qint;
-  double      ***qintA1,***qintA2,***qintA3,***qintA4;
-  double      ***qintB1,***qintB2,***qintB3,***qintB4;
-
-  qA1=create_4d_double_array(Nx,Ny,Nz,((int)Ns[0]+1),"qA1");
-  qA2=create_4d_double_array(Nx,Ny,Nz,((int)Ns[1]+1),"qA2");
-  qA3=create_4d_double_array(Nx,Ny,Nz,((int)Ns[2]+1),"qA3");
-  qA4=create_4d_double_array(Nx,Ny,Nz,((int)Ns[3]+1),"qA4");
  
-  qB1=create_4d_double_array(Nx,Ny,Nz,((int)Ns[4]+1),"qB1");
-  qB2=create_4d_double_array(Nx,Ny,Nz,((int)Ns[5]+1),"qB2");
-  qB3=create_4d_double_array(Nx,Ny,Nz,((int)Ns[6]+1),"qB3");
-  qB4=create_4d_double_array(Nx,Ny,Nz,((int)Ns[7]+1),"qB4");
-
-  qdagA1=create_4d_double_array(Nx,Ny,Nz,((int)Ns[0]+1),"qdagA1");
-  qdagA2=create_4d_double_array(Nx,Ny,Nz,((int)Ns[1]+1),"qdagA2");
-  qdagA3=create_4d_double_array(Nx,Ny,Nz,((int)Ns[2]+1),"qdagA3");
-  qdagA4=create_4d_double_array(Nx,Ny,Nz,((int)Ns[3]+1),"qdagA4");
-
-  qdagB1=create_4d_double_array(Nx,Ny,Nz,((int)Ns[4]+1),"qdagB1");
-  qdagB2=create_4d_double_array(Nx,Ny,Nz,((int)Ns[5]+1),"qdagB2");
-  qdagB3=create_4d_double_array(Nx,Ny,Nz,((int)Ns[6]+1),"qdagB3");
-  qdagB4=create_4d_double_array(Nx,Ny,Nz,((int)Ns[7]+1),"qdagB4");
-
-  qint=create_3d_double_array(Nx,Ny,Nz,"qint");
-
-  qintA1=create_3d_double_array(Nx,Ny,Nz,"qintA1");
-  qintA2=create_3d_double_array(Nx,Ny,Nz,"qintA2");
-  qintA3=create_3d_double_array(Nx,Ny,Nz,"qintA3");
-  qintA4=create_3d_double_array(Nx,Ny,Nz,"qintA4");
-
-  qintB1=create_3d_double_array(Nx,Ny,Nz,"qintB1");
-  qintB2=create_3d_double_array(Nx,Ny,Nz,"qintB2");
-  qintB3=create_3d_double_array(Nx,Ny,Nz,"qintB3");
-  qintB4=create_3d_double_array(Nx,Ny,Nz,"qintB4");
-
- 
-
   // Here is the for loop for doing the qint, setting it to 1.0
   for(i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
@@ -53,10 +12,8 @@ double ConcAB(double ****phi,double ****w,double *Ns,double ds,double ***k_vecto
     }
   }
 
-    std::cout<<"3"<<std::endl;
   // Here we will solve the diffusion question
   solveModDiffEqn_FFT(qB1,w[4],qint,ds,(int)Ns[4],1,k_vector,dxyz);
-      std::cout<<"3"<<std::endl;
   solveModDiffEqn_FFT(qB2,w[5],qint,ds,(int)Ns[5],1,k_vector,dxyz);
   solveModDiffEqn_FFT(qB3,w[6],qint,ds,(int)Ns[6],1,k_vector,dxyz);
   solveModDiffEqn_FFT(qB4,w[7],qint,ds,(int)Ns[7],1,k_vector,dxyz);
@@ -226,7 +183,6 @@ double ConcAB(double ****phi,double ****w,double *Ns,double ds,double ***k_vecto
 	  }
 	}
 
-
 	phi[0][i][j][l]*=(1.0/Q);
 	phi[1][i][j][l]*=(1.0/Q);
 	phi[2][i][j][l]*=(1.0/Q);
@@ -240,36 +196,6 @@ double ConcAB(double ****phi,double ****w,double *Ns,double ds,double ***k_vecto
     }
   }
   
-
-  
-  //clearing the memory
-  destroy_4d_double_array(qA1);
-  destroy_4d_double_array(qA2);
-  destroy_4d_double_array(qA3);
-  destroy_4d_double_array(qA4);
-  destroy_4d_double_array(qB1);
-  destroy_4d_double_array(qB2);
-  destroy_4d_double_array(qB3);
-  destroy_4d_double_array(qB4);
-  destroy_4d_double_array(qdagA1);
-  destroy_4d_double_array(qdagA2);
-  destroy_4d_double_array(qdagA3);
-  destroy_4d_double_array(qdagA4);
-  destroy_4d_double_array(qdagB1);  
-  destroy_4d_double_array(qdagB2);  
-  destroy_4d_double_array(qdagB3);  
-  destroy_4d_double_array(qdagB4);
-  destroy_3d_double_array(qint);
-  destroy_3d_double_array(qintA1);
-  destroy_3d_double_array(qintA2);
-  destroy_3d_double_array(qintA3);
-  destroy_3d_double_array(qintA4);
-  destroy_3d_double_array(qintB1);
-  destroy_3d_double_array(qintB2);
-  destroy_3d_double_array(qintB3);
-  destroy_3d_double_array(qintB4);
-
-
   return Q;
 
 

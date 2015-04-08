@@ -5,12 +5,7 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
   
   int            i,j,l,s,ss;  // some counters
   unsigned long  ijl; // This is used for the Fourier Transform
-  double         ***wds, ***kds;
 
- 
-
-  wds=create_3d_double_array(Nx,Ny,Nz,"wds");
-  kds=create_3d_double_array(Nx,Ny,Nz,"kds");
 
   for(i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
@@ -107,9 +102,5 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
     }
   }
 
-    //std::cout<<Nx*Ny*Nz*dxyz[0]*dxyz[1]*dxyz[2]<<std::endl;
-
-  destroy_3d_double_array(wds);
-  destroy_3d_double_array(kds);
 
 };

@@ -13,9 +13,9 @@
 
  
 
-#define Nx 32
-#define Ny 32
-#define Nz 32
+#define Nx 22
+#define Ny 22
+#define Nz 22
 
 #define ChainType 8
 #define Pi 3.14159
@@ -34,4 +34,15 @@ double Lx, Ly, Lz;
 double pA1ave, pA2ave, pA3ave, pA4ave, pB1ave, pB2ave,pB3ave, pB4ave;
 
 
+// Used in solvediffeq.hh
+double         ***wds, ***kds;
 
+
+// Used in ConcAB.hh
+double      ****qA1,****qA2,****qA3,****qA4;
+double      ****qB1,****qB2,****qB3,****qB4;
+double      ****qdagA1,****qdagA2,****qdagA3,****qdagA4;
+double      ****qdagB1,****qdagB2,****qdagB3,****qdagB4;
+double      ***qint;
+double      ***qintA1,***qintA2,***qintA3,***qintA4;
+double      ***qintB1,***qintB2,***qintB3,***qintB4;

@@ -31,7 +31,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   // 0 read
   // 1 make
   // 2 random
-  Iomega=1;
+  Iomega=2;
   
   // For 4Arm L=2.2
   Lx=5.0;
