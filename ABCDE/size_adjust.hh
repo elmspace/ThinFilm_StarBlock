@@ -1,4 +1,4 @@
-double size_adjust(double ****w, double ****phi, double ***eta, double *Ns, double ds, double ***k_vector, double *chi, double *dxyz, double **chiMatrix){
+void size_adjust(double ****w, double ****phi, double ***eta, double *Ns, double ds, double ***k_vector, double *chi, double *dxyz, double **chiMatrix){
 
   int     i,j,k,l,ii,jj,ll,kk;
   double  delx,dely,delz;
@@ -81,11 +81,7 @@ double size_adjust(double ****w, double ****phi, double ***eta, double *Ns, doub
   dxyz[2]=dxyz[2]+box_z[i];
 
   //std::cout<<i<<std::endl;
-  
-  
-  box=1;
-  return box;
-  
+   
   destroy_1d_double_array(dxyz_temp);
   destroy_1d_double_array(box_x);
   destroy_1d_double_array(box_y);

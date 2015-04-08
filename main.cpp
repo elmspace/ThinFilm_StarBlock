@@ -20,6 +20,7 @@ int main(){
   double ****w;
   double ***eta;
   double ****phi;
+  double ****h;
   double *chi;
   double *f;
   double ds;
@@ -27,11 +28,12 @@ int main(){
   double ***k_vector;
   double *dxyz;
   double **chiMatrix;
-  int i;
+  int FFTW_MEASURE;
   
   w=create_4d_double_array(ChainType,Nx,Ny,Nz,"w");
   eta=create_3d_double_array(Nx,Ny,Nz,"eta");
   phi=create_4d_double_array(ChainType,Nx,Ny,Nz,"phi");
+  h=create_4d_double_array(ChainType,Nx,Ny,Nz,"h");
   chi=create_1d_double_array(2,"chi");
   f=create_1d_double_array(ChainType,"f");
   Ns=create_1d_double_array(ChainType,"Ns");
@@ -49,14 +51,14 @@ int main(){
   final_q=(double*)fftw_malloc(sizeof(double)*Nx*Ny*Nz);
 
 
-  forward_plan=fftw_plan_r2r_3d(Nx,Ny,Nz,input_q,transformed_q,FFTW_REDFT10,FFTW_REDFT10,FFTW_REDFT10,i);
-  inverse_plan=fftw_plan_r2r_3d(Nx,Ny,Nz,transformed_q,final_q,FFTW_REDFT01,FFTW_REDFT01,FFTW_REDFT01,i);
+  forward_plan=fftw_plan_r2r_3d(Nx,Ny,Nz,input_q,transformed_q,FFTW_REDFT10,FFTW_REDFT10,FFTW_REDFT10,FFTW_MEASURE);
+  inverse_plan=fftw_plan_r2r_3d(Nx,Ny,Nz,transformed_q,final_q,FFTW_REDFT01,FFTW_REDFT01,FFTW_REDFT01,FFTW_MEASURE);
   
-  parametersAB(chi,f,ds,Ns,dxyz,chiMatrix);
+  parametersAB(chi,f,ds,Ns,dxyz,chiMatrix,h);
  
   omega(w);
 
-  FreeEnergy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);
+  FreeEnergy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix,h);
   
 
 
@@ -71,6 +73,7 @@ int main(){
   destroy_4d_double_array(w);
   destroy_3d_double_array(eta);
   destroy_4d_double_array(phi);
+  destroy_4d_double_array(h);
   destroy_1d_double_array(chi);
   destroy_1d_double_array(Ns);
   destroy_1d_double_array(f);

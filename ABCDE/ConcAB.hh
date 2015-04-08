@@ -53,13 +53,14 @@ double ConcAB(double ****phi,double ****w,double *Ns,double ds,double ***k_vecto
     }
   }
 
-
+    std::cout<<"3"<<std::endl;
   // Here we will solve the diffusion question
   solveModDiffEqn_FFT(qB1,w[4],qint,ds,(int)Ns[4],1,k_vector,dxyz);
+      std::cout<<"3"<<std::endl;
   solveModDiffEqn_FFT(qB2,w[5],qint,ds,(int)Ns[5],1,k_vector,dxyz);
   solveModDiffEqn_FFT(qB3,w[6],qint,ds,(int)Ns[6],1,k_vector,dxyz);
   solveModDiffEqn_FFT(qB4,w[7],qint,ds,(int)Ns[7],1,k_vector,dxyz);
- 
+
 
   // The result from the above calculation becomes qdags initial cond
   for(i=0;i<Nx;i++){
@@ -73,7 +74,7 @@ double ConcAB(double ****phi,double ****w,double *Ns,double ds,double ***k_vecto
     }
   }
  
-  
+ 
   // Here we will solve the diffusion question
   solveModDiffEqn_FFT(qA1,w[0],qintA1,ds,(int)Ns[0],1,k_vector,dxyz);
   solveModDiffEqn_FFT(qA2,w[1],qintA2,ds,(int)Ns[1],1,k_vector,dxyz);
