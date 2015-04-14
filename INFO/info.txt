@@ -1,0 +1,125 @@
+#
+# This file contains some information about the systems I use
+#
+# All the following information is for Bulk
+
+
+######################################## 1-Arm ############################################
+LAM
+
+xAB=0.14*Ntot
+NA1= 50
+Ntot= 100
+Lx=
+Ly=
+Lz=
+NX=
+Ny=
+Nz=
+
+Note=
+
+------------------------
+Hex
+
+xAB= 0.14*Ntot
+NA1= 35
+Ntot= 100
+Lx=
+Ly=
+Lz=
+NX=
+Ny=
+Nz=
+
+Note=
+
+######################################## 2-Arm ############################################
+LAM
+
+xAB=0.14*Ntot
+NA1= 50
+Ntot= 100
+Lx=
+Ly=
+Lz=
+NX=
+Ny=
+Nz=
+
+Note=
+
+------------------------
+Hex
+
+xAB= 0.14*Ntot
+NA1= 35
+Ntot= 100
+Lx=
+Ly=
+Lz=
+NX=
+Ny=
+Nz=
+
+Note=
+
+######################################## 3-Arm ############################################
+LAM
+
+xAB=0.14*Ntot
+NA1= 50
+Ntot= 100
+Lx=
+Ly=
+Lz=
+NX=
+Ny=
+Nz=
+
+Note=
+
+------------------------
+Hex
+
+xAB= 0.14*Ntot
+NA1= 35
+Ntot= 100
+Lx=
+Ly=
+Lz=
+NX=
+Ny=
+Nz=
+
+Note=
+
+######################################## 4-Arm ############################################
+LAM
+
+xAB=0.14*Ntot
+NA1= 50
+Ntot= 100
+Lx=
+Ly=
+Lz=
+NX=
+Ny=
+Nz=
+
+Note=
+
+------------------------
+Hex
+
+xAB= 0.14*Ntot
+NA1= 35
+Ntot= 100
+Lx=
+Ly=
+Lz=
+NX=
+Ny=
+Nz=
+
+Note=

@@ -6,7 +6,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
   int     msg=1;
   int     i,j,k,iter,chain,ii,jj; 
   double  currentfE, oldfE, deltafE,oldfE_iter; 
-  double  precision=1.0e-5; 
+  double  precision=1.0e-3; 
   double  QAB; 
   double  fEW, fEchi, fES, fEsurf; 
   double  epsilon, gamma;
