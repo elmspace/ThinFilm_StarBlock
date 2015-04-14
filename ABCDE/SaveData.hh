@@ -2,15 +2,13 @@ void SaveData(double ****phi, double ****w, double *dxyz){
 
   int i, j ,k;
 
-  std::string xyz="./MATLAB/xyz.dat";
-  std::string ABCD="./MATLAB/ABCD.dat"; 
   //+++++++++++++++++++++++++++++ This output is setup for the matlab plotting +++++++++++++++++++
-  std::ofstream outputFile7(xyz);
+  std::ofstream outputFile7("./MATLAB/xyz.dat");
   for (i=0;i<Nx;i++){
     outputFile7<<i*dxyz[0]<<" "<<i*dxyz[1]<<" "<<i*dxyz[2]<<std::endl;
   }
   outputFile7.close();  
-  std::ofstream outputFile8(ABCD);
+  std::ofstream outputFile8("./MATLAB/ABCD.dat");
   for (i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
       for(k=0;k<Nz;k++){
