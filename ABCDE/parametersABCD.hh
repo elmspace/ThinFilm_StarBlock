@@ -2,45 +2,66 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   
   int i,j,k;
   int Ds;
+  int Numb_of_Arms;
   double xAB;
+
+  Numb_of_Arms=1;
+
+  // 0 read                                                                                                                                                                         
+  // 1 make                                                                                                                                                                         
+  // 2 random                                                                                                                                                                       
+  Iomega=1;
+
+  LAM=0;
+  HEX=1;
 
   // Minimize with respect to box size (yes=1, No=0)
   box_min=1;
 
   // Degree of polymerization (Each arm of the star is 100)
-  Ns[0]=35;  // A1
-  Ns[1]=Ns[0];  // A2
-  Ns[2]=Ns[0];  // A3
-  Ns[3]=Ns[0];  // A4
-  Ns[4]=100-Ns[0];  // B1
-  Ns[5]=100-Ns[0];  // B2
-  Ns[6]=100-Ns[0];  // B3
-  Ns[7]=100-Ns[0];  // B4
+  if(LAM==1){
+    Ns[0]=50;  // A1
+  }else if(HEX==1){
+    Ns[0]=35;  // A1                                                                                                                                                                
+  }else{
+    std::cout<<"You have not chosen a phase yet."<<std::endl;
+    Ns[0]=50;  // A1                                                                                                                                                                
+  }
+  Arms(Numb_of_Arms,Ns);
  
   // Total length
   Ds=Ns[0]+Ns[1]+Ns[2]+Ns[3]+Ns[4]+Ns[5]+Ns[6]+Ns[7];
  
   // Setting the generic chi parameters
   xAB=(0.14)*Ds;
-  std::cout<<xAB<<std::endl;
+  std::cout<<"xAB="<<xAB<<std::endl;
+  std::cout<<"------------------------"<<std::endl;
   h_AAir=(0.0)*Ds;
   h_BAir=(0.0)*Ds;
   h_ASub=(0.0)*Ds;
   h_BSub=(0.0)*Ds;
 
- 
-  // 0 read
-  // 1 make
-  // 2 random
-  Iomega=1;
-  
-  LAM=0;
-  HEX=1;
-
   // For 4Arm L=2.2
-  Lx=2.0;
-  Ly=sqrt(3)*2.0;
-  Lz=2.0;
+  if(LAM==1){
+    Lx=2.0;
+    Ly=2.0;
+    Lz=2.0;
+  }else if(HEX==1){
+    Lx=2.0;
+    Ly=sqrt(3)*2.0;
+    Lz=2.0;
+  }else{
+    std::cout<<"You have not chosen a phase yet."<<std::endl;
+    Lx=2.0;
+    Ly=2.0;
+    Lz=2.0;
+  }
+
+  std::cout<<"Lx="<<Lx<<std::endl;
+  std::cout<<"Ly="<<Ly<<std::endl;  
+  std::cout<<"Lz="<<Lz<<std::endl;
+  std::cout<<"-------------------------"<<std::endl;
+
   dxyz[0]=Lx/Nx;
   dxyz[1]=Ly/Ny;
   dxyz[2]=Lz/Nz;
@@ -53,6 +74,16 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   f[5]=Ns[5]/Ds;  // fB2
   f[6]=Ns[6]/Ds;  // fB3
   f[7]=Ns[7]/Ds;  // fB4
+
+  std::cout<<"fA1="<<f[0]<<std::endl;
+  std::cout<<"fA2="<<f[1]<<std::endl;
+  std::cout<<"fA3="<<f[2]<<std::endl;
+  std::cout<<"fA4="<<f[3]<<std::endl;
+  std::cout<<"fB1="<<f[4]<<std::endl;
+  std::cout<<"fB2="<<f[5]<<std::endl;
+  std::cout<<"fB3="<<f[6]<<std::endl;
+  std::cout<<"fB4="<<f[7]<<std::endl;
+  std::cout<<"-------------------------"<<std::endl;
 
   // Setting up the individual chi values
   chi[0]=xAB;    
