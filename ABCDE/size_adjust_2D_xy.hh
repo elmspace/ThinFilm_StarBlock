@@ -13,8 +13,8 @@ double size_adjust_2D_xy(double ****w, double ****phi, double ***eta, double *Ns
   box_fE=create_1d_double_array(8,"box_fE");
   dxyz_temp=create_1d_double_array(3,"dxyz_temp");
 
-  delx=0.01/Nx;
-  dely=0.01/Ny;
+  delx=0.05/Nx;
+  dely=0.05/Ny;
  
   // std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   l=0;

@@ -7,13 +7,14 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
 
   Numb_of_Arms=1;
 
-  // 0 read                                                                                                                                                                         
-  // 1 make                                                                                                                                                                         
-  // 2 random                                                                                                                                                                       
+  // 0 read
+  // 1 make 
+  // 2 random     
+                                                                                 
   Iomega=1;
 
-  LAM=0;
-  HEX=1;
+  LAM=1;
+  HEX=0;
 
   // Minimize with respect to box size (yes=1, No=0)
   box_min=1;
@@ -36,16 +37,16 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   xAB=(0.14)*Ds;
   std::cout<<"xAB="<<xAB<<std::endl;
   std::cout<<"------------------------"<<std::endl;
-  h_AAir=(0.0)*Ds;
-  h_BAir=(0.0)*Ds;
-  h_ASub=(0.0)*Ds;
-  h_BSub=(0.0)*Ds;
+  h_AAir=0.0*(0.08)*Ds;
+  h_BAir=0.0*(0.12)*Ds; // This is a variable
+  h_ASub=0.0*(0.08)*Ds;
+  h_BSub=0.0*(0.06)*Ds;
 
   // For 4Arm L=2.2
   if(LAM==1){
-    Lx=2.0;
-    Ly=2.0;
-    Lz=2.0;
+    Lx=4.0;
+    Ly=4.0;
+    Lz=4.0;
   }else if(HEX==1){
     Lx=2.0;
     Ly=sqrt(3)*2.0;

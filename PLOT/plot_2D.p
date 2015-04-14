@@ -12,15 +12,17 @@ set palette model RGB
 set dgrid3d 20,20,1
 set pm3d flush begin ftriangles scansforward interpolate 10,5
 
-
+set xlabel 'x'  font ",22"
+set ylabel 'y'  font ",22"
+   
    unset key
    unset sur
    set hidden3d
    set view map 
    set autoscale
-#set size square
+   set size square
    # Format: index1 index2 A1 A2 A3 A4 B1 B2 B3 B4
-   splot elmspace."phi_xy.dat" using 2:1:($3+$4+$5+$6)
+   splot elmspace."phi_xy.dat" using 1:2:($3+$4+$5+$6)
 
 pause(-1)
    
@@ -39,7 +41,8 @@ set palette model RGB
 set dgrid3d 20,20,1
 set pm3d flush begin ftriangles scansforward interpolate 10,5
 
-
+set xlabel 'x'  font ",22"
+set ylabel 'z'  font ",22"
    unset key
    unset sur
    set hidden3d
@@ -62,10 +65,11 @@ set pm3d
 set iso 100
 set samp 100
 set palette model RGB
-set dgrid3d 15,15,1
+set dgrid3d 20,20,1
 set pm3d flush begin ftriangles scansforward interpolate 10,5
 
-
+set xlabel 'y'  font ",22"
+set ylabel 'z'  font ",22"
    unset key
    unset sur
    set hidden3d
