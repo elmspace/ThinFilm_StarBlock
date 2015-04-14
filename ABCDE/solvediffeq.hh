@@ -5,6 +5,12 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
   
   int            i,j,l,s,ss;  // some counters
   unsigned long  ijl; // This is used for the Fourier Transform
+  double         ***wds, ***kds;
+
+  // Used in solvediffeq.hh
+  wds=create_3d_double_array(Nx,Ny,Nz,"wds");
+  kds=create_3d_double_array(Nx,Ny,Nz,"kds");
+  //+++++++++++++++++++++++++++++++++++++++++
 
 
   for(i=0;i<Nx;i++){
@@ -25,23 +31,18 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
 	}
       }
     }
-    for(s=0;s<((int)Ns);s++){ 
-      std::cout<<"1"<<std::endl;
+    for(s=0;s<((int)Ns);s++){
+
       for(i=0;i<Nx;i++){
 	for(j=0;j<Ny;j++){
 	  for(l=0;l<Nz;l++){
 	    ss=l+Nz*(j+Ny*i);
-	    std::cout<<"s= "<<ss<<std::endl;
-	    //input_q[ss]=q[i][j][l][s]*wds[i][j][l];
-	    std::cout<<"inpt "<<input_q[ss]<<std::endl;
-	    std::cout<<"q "<<q[i][j][l][s]<<std::endl;
-	    std::cout<<"w "<<wds[i][j][l]<<std::endl;
+	    input_q[ss]=q[i][j][l][s]*wds[i][j][l];
 	  }
 	}
       }
-      std::cout<<"1 after"<<std::endl;
+    
       fftw_execute(forward_plan);
-      std::cout<<"2"<<std::endl;
       for(i=0;i<Nx;i++){
 	for(j=0;j<Ny;j++){
 	  for(l=0;l<Nz;l++){
@@ -50,7 +51,7 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
 	  }
 	}
       }
-      std::cout<<"3"<<std::endl;
+    
       fftw_execute(inverse_plan);
       for(i=0;i<Nx;i++){
 	for(j=0;j<Ny;j++){
@@ -60,8 +61,6 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
 	  }
 	}
       }
-      std::cout<<"4"<<std::endl;
-      //std::cout<<s<<std::endl;
     }
   }else{
 
@@ -106,5 +105,8 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
     }
   }
 
-
+  // Used in solvediffeq.hh
+  destroy_3d_double_array(wds);
+  destroy_3d_double_array(kds);
+  //+++++++++++++++++++++++++++
 };

@@ -6,7 +6,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
   int     msg=1;
   int     i,j,k,iter,chain,ii,jj; 
   double  currentfE, oldfE, deltafE,oldfE_iter; 
-  double  precision=1.0e-2; 
+  double  precision=1.0e-5; 
   double  QAB; 
   double  fEW, fEchi, fES, fEsurf; 
   double  epsilon, gamma;
@@ -32,7 +32,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
   avphi[7]=pB4ave; // B4 average
 
   oldfE=1.0e2;
-  std::ofstream outputFile("./fE.dat");
+  std::ofstream outputFile("./RESULTS/fE.dat");
   do{
    
     WaveVectors(k_vector,dxyz);
@@ -73,7 +73,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
       for(i=0;i<Nx;i++){
 	for(j=0;j<Ny;j++){
 	  for(k=0;k<Nz;k++){
-
+	    
 	    for(ii=0;ii<ChainType;ii++){
 	      for(jj=0;jj<ChainType;jj++){
 	  
@@ -106,7 +106,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
       
       deltafE=fabs(currentfE-oldfE_iter);
 
-      std::cout<<iter<<" "<<currentfE<< " " << deltaW<<" "<<deltafE<<std::endl;
+      std::cout<<"Iter="<<iter<<"  fE="<<currentfE<<"  delW=" <<deltaW<<"  delfE="<<currentfE-fE_homo<<std::endl;
       oldfE_iter=currentfE;
 
       // Updating the new W-field
@@ -120,46 +120,13 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
 	}
       }
   
+      SaveData(phi,w,dxyz);
 
     }while(deltaW>precision);
-   
-    //+++++++++++++++++++++++++++++ This output is setup for the matlab plotting +++++++++++++++++++
-    std::ofstream outputFile7("./xyz.dat");
-    for (i=0;i<Nx;i++){
-      outputFile7<<i*dxyz[0]<<" "<<i*dxyz[1]<<" "<<i*dxyz[2]<<std::endl;
-    }
-    outputFile7.close();  
-    std::ofstream outputFile8("./ABCD.dat");
-    for (i=0;i<Nx;i++){
-      for(j=0;j<Ny;j++){
-	for(k=0;k<Nz;k++){
-	  outputFile8<<phi[0][i][j][k]+phi[1][i][j][k]+phi[2][i][j][k]+phi[3][i][j][k]<<" "<<phi[4][i][j][k]+phi[5][i][j][k]+phi[6][i][j][k]+phi[7][i][j][k]<<std::endl;
-	}
-      }
-    }
-    outputFile8.close();
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
+  
     outputFile <<currentfE<<" "<<fE_homo<<" "<<dxyz[0]*Nx<<" "<<dxyz[1]*Ny<<" "<<dxyz[2]*Nz<<std::endl;
   
-    
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // Writting to data files
-    std::ofstream outputFile6("./omega.dat");
-    for(i=0;i<Nx;i++){
-      for(j=0;j<Ny;j++){
-	for(k=0;k<Nz;k++){
-	  outputFile6 <<i<<" "<<j<<" "<<k<< " "<<w[0][i][j][k]<<" "<<w[1][i][j][k]<<" "<<w[2][i][j][k]<<" "<<w[3][i][j][k]<<" "<<w[4][i][j][k]<< " "<<w[5][i][j][k]<<" "<<w[6][i][j][k]<<" "<<w[7][i][j][k]<<std::endl;
-	}
-      }
-    }
-    outputFile6.close();
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-      
-  
     size_adjust_2D_xy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);
- 
    
     if(oldfE<currentfE){
       msg=0;

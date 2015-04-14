@@ -13,7 +13,6 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   Ns[2]=Ns[0];  // A3
   Ns[3]=Ns[0];  // A4
   Ns[4]=100-Ns[0];  // B1
-  std::cout<<Ns[4]<<std::endl;
   Ns[5]=100-Ns[0];  // B2
   Ns[6]=100-Ns[0];  // B3
   Ns[7]=100-Ns[0];  // B4
@@ -23,21 +22,25 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
  
   // Setting the generic chi parameters
   xAB=(0.14)*Ds;
-  h_AAir=(0.08)*Ds;
-  h_BAir=(0.08)*Ds;
-  h_ASub=(0.08)*Ds;
-  h_BSub=(0.06)*Ds;
+  std::cout<<xAB<<std::endl;
+  h_AAir=(0.0)*Ds;
+  h_BAir=(0.0)*Ds;
+  h_ASub=(0.0)*Ds;
+  h_BSub=(0.0)*Ds;
 
  
   // 0 read
   // 1 make
   // 2 random
-  Iomega=2;
+  Iomega=1;
   
+  LAM=0;
+  HEX=1;
+
   // For 4Arm L=2.2
-  Lx=5.0;
-  Ly=5.0;
-  Lz=5.0;
+  Lx=2.0;
+  Ly=sqrt(3)*2.0;
+  Lz=2.0;
   dxyz[0]=Lx/Nx;
   dxyz[1]=Ly/Ny;
   dxyz[2]=Lz/Nz;
@@ -52,8 +55,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   f[7]=Ns[7]/Ds;  // fB4
 
   // Setting up the individual chi values
-  chi[0]=0.0;  
-  chi[1]=xAB;  
+  chi[0]=xAB;    
   //++++++++++++++++++++++++++++++++++++++++++++++++
 
   // Average Concentrations
