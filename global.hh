@@ -16,8 +16,8 @@ using namespace std;
  
 
 #define Nx 26
-#define Ny 26
-#define Nz 26
+#define Ny 10
+#define Nz 20
 
 #define ChainType 8
 #define Pi 3.14159

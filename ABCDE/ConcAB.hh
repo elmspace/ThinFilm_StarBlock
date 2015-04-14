@@ -13,10 +13,15 @@ double ConcAB(double ****phi,double ****w,double *Ns,double ds,double ***k_vecto
   }
 
   // Here we will solve the diffusion question
+  std::cout<<"B1"<<std::endl;
   solveModDiffEqn_FFT(qB1,w[4],qint,ds,(int)Ns[4],1,k_vector,dxyz);
+  std::cout<<"B2"<<std::endl;
   solveModDiffEqn_FFT(qB2,w[5],qint,ds,(int)Ns[5],1,k_vector,dxyz);
+  std::cout<<"B3"<<std::endl;
   solveModDiffEqn_FFT(qB3,w[6],qint,ds,(int)Ns[6],1,k_vector,dxyz);
+  std::cout<<"B4"<<std::endl;
   solveModDiffEqn_FFT(qB4,w[7],qint,ds,(int)Ns[7],1,k_vector,dxyz);
+  std::cout<<"B5"<<std::endl;
 
 
   // The result from the above calculation becomes qdags initial cond

@@ -13,6 +13,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   Ns[2]=Ns[0];  // A3
   Ns[3]=Ns[0];  // A4
   Ns[4]=100-Ns[0];  // B1
+  std::cout<<Ns[4]<<std::endl;
   Ns[5]=100-Ns[0];  // B2
   Ns[6]=100-Ns[0];  // B3
   Ns[7]=100-Ns[0];  // B4
