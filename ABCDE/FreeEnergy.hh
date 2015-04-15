@@ -129,7 +129,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
     //size_adjust_2D_xy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);
     size_adjust(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);
 
-    if((oldfE<currentfE)||(oldfE==currentfE)){
+    if((oldfE<currentfE)||((abs(oldfE)-abs(currentfE))<1.0e-4)){
       msg=0;
     }
     if(msg==1){
