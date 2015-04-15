@@ -26,6 +26,7 @@ void size_adjust(double ****w, double ****phi, double ***eta, double *Ns, double
 
 	if((i==0)&&(j==0)&&(k==0)){
 	  
+	  
 	}else{
 	  
 	  box_x[l]=i*delx;
@@ -90,4 +91,3 @@ void size_adjust(double ****w, double ****phi, double ***eta, double *Ns, double
   destroy_4d_double_array(w_temp);
   
 };
-

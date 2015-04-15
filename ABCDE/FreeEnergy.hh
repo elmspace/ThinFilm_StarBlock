@@ -2,7 +2,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
 
   
  
-  int     maxIter=4000; 
+  int     maxIter=50; 
   int     msg=1;
   int     i,j,k,iter,chain,ii,jj; 
   double  currentfE, oldfE, deltafE,oldfE_iter; 
@@ -122,14 +122,14 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
   
       SaveData(phi,w,dxyz);
 
-    }while(deltaW>precision);
+    }while((deltaW>precision)||(iter<maxIter));
   
     outputFile <<currentfE<<" "<<fE_homo<<" "<<dxyz[0]*Nx<<" "<<dxyz[1]*Ny<<" "<<dxyz[2]*Nz<<std::endl;
   
     //size_adjust_2D_xy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);
     size_adjust(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);
 
-    if(oldfE<currentfE){
+    if((oldfE<currentfE)||(oldfE==currentfE)){
       msg=0;
     }
     if(msg==1){

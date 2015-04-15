@@ -23,10 +23,10 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   if(LAM==1){
     Ns[0]=50;  // A1
   }else if(HEX==1){
-    Ns[0]=35;  // A1                                                                                                                                                                
+    Ns[0]=35;  // A1
   }else{
     std::cout<<"You have not chosen a phase yet."<<std::endl;
-    Ns[0]=50;  // A1                                                                                                                                                                
+    Ns[0]=50;  // A1 
   }
   Arms(Numb_of_Arms,Ns);
  
@@ -44,7 +44,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
 
   // For 4Arm L=2.2
   if(LAM==1){
-    Lx=4.0;
+    Lx=3.5/sqrt(Numb_of_Arms);
     Ly=4.0;
     Lz=4.0;
   }else if(HEX==1){
