@@ -31,7 +31,10 @@ int main(){
   double *dxyz;
   double **chiMatrix;
   //int FFTW_MEASURE;
-  
+
+
+
+
   w=create_4d_double_array(ChainType,Nx,Ny,Nz,"w");
   eta=create_3d_double_array(Nx,Ny,Nz,"eta");
   phi=create_4d_double_array(ChainType,Nx,Ny,Nz,"phi");

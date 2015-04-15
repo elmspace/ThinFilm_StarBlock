@@ -20,28 +20,54 @@ void omega(double ****w){
     infile.close();
 
   }else if(Iomega==1){
-
+    // LAM ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     if(LAM==1){
-      for(i=0;i<Nx;i++){
-	for(j=0;j<Ny;j++){
-	  for(k=0;k<Nz;k++){
-	    w[0][i][j][k]=-1.0*cos(2.0*Pi*i/Nx); //A1
-	    w[1][i][j][k]=-1.0*cos(2.0*Pi*i/Nx); //A2
-	    w[2][i][j][k]=-1.0*cos(2.0*Pi*i/Nx); //A3
-	    w[3][i][j][k]=-1.0*cos(2.0*Pi*i/Nx); //A4
+      if(HOR==1){
+	for(i=0;i<Nx;i++){
+	  for(j=0;j<Ny;j++){
+	    for(k=0;k<Nz;k++){
+	      w[0][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*k/Nz); //A1
+	      w[1][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*k/Nz); //A2
+	      w[2][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*k/Nz); //A3
+	      w[3][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*k/Nz); //A4
+	    }
+	  }
+	}
+      } else if(VER==1){
+	for(i=0;i<Nx;i++){
+	  for(j=0;j<Ny;j++){
+	    for(k=0;k<Nz;k++){
+	      w[0][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*i/Nx); //A1
+	      w[1][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*i/Nx); //A2
+	      w[2][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*i/Nx); //A3
+	      w[3][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*i/Nx); //A4
+	    }
 	  }
 	}
       }
     }
-
+    // HEX ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     if(HEX==1){
-      for(i=0;i<Nx;i++){
-	for(j=0;j<Ny;j++){
-	  for(k=0;k<Nz;k++){
-	    w[0][i][j][k]=-1.0*cos(2.0*Pi*i/Nx)*cos(2.0*Pi*j/Ny); //A1
-	    w[1][i][j][k]=-1.0*cos(2.0*Pi*i/Nx)*cos(2.0*Pi*j/Ny); //A2
-	    w[2][i][j][k]=-1.0*cos(2.0*Pi*i/Nx)*cos(2.0*Pi*j/Ny); //A3
-	    w[3][i][j][k]=-1.0*cos(2.0*Pi*i/Nx)*cos(2.0*Pi*j/Ny); //A4
+      if(HOR==1){
+	for(i=0;i<Nx;i++){
+	  for(j=0;j<Ny;j++){
+	    for(k=0;k<Nz;k++){
+	      w[0][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*i/Nx)*cos(Numb_of_Periods*2.0*Pi*k/Nz); //A1
+	      w[1][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*i/Nx)*cos(Numb_of_Periods*2.0*Pi*k/Nz); //A2
+	      w[2][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*i/Nx)*cos(Numb_of_Periods*2.0*Pi*k/Nz); //A3
+	      w[3][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*i/Nx)*cos(Numb_of_Periods*2.0*Pi*k/Nz); //A4
+	    }
+	  }
+	}
+      } else if(VER==1){
+	for(i=0;i<Nx;i++){
+	  for(j=0;j<Ny;j++){
+	    for(k=0;k<Nz;k++){
+	      w[0][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*i/Nx)*cos(Numb_of_Periods*2.0*Pi*j/Ny); //A1
+	      w[1][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*i/Nx)*cos(Numb_of_Periods*2.0*Pi*j/Ny); //A2
+	      w[2][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*i/Nx)*cos(Numb_of_Periods*2.0*Pi*j/Ny); //A3
+	      w[3][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*i/Nx)*cos(Numb_of_Periods*2.0*Pi*j/Ny); //A4
+	    }
 	  }
 	}
       }

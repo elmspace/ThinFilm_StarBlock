@@ -10,12 +10,12 @@ LAM
 xAB=0.14*Ntot
 NA1= 50
 Ntot= 100
-Lx=
-Ly=
-Lz=
-NX=
-Ny=
-Nz=
+Lx= 3.45
+Ly= 3.45
+Lz= 3.45
+NX= 20
+Ny= 20
+Nz= 20
 
 Note=
 
@@ -25,12 +25,12 @@ Hex
 xAB= 0.14*Ntot
 NA1= 35
 Ntot= 100
-Lx=
-Ly=
-Lz=
-NX=
-Ny=
-Nz=
+Lx= 3.8
+Ly= 6.3
+Lz= 5.9
+NX= 20
+Ny= 20
+Nz= 20
 
 Note=
 
@@ -40,12 +40,12 @@ LAM
 xAB=0.14*Ntot
 NA1= 50
 Ntot= 100
-Lx=
-Ly=
-Lz=
-NX=
-Ny=
-Nz=
+Lx= 2.72
+Ly= 2.72
+Lz= 2.72
+NX= 20
+Ny= 20
+Nz= 20
 
 Note=
 
@@ -70,12 +70,12 @@ LAM
 xAB=0.14*Ntot
 NA1= 50
 Ntot= 100
-Lx=
-Ly=
-Lz=
-NX=
-Ny=
-Nz=
+Lx= 2.32
+Ly= 2.32
+Lz= 2.32
+NX= 20
+Ny= 20
+Nz= 20
 
 Note=
 
@@ -100,12 +100,12 @@ LAM
 xAB=0.14*Ntot
 NA1= 50
 Ntot= 100
-Lx=
-Ly=
-Lz=
-NX=
-Ny=
-Nz=
+Lx= 2.0
+Ly= 2.0
+Lz= 2.0
+NX= 20
+Ny= 20
+Nz= 20
 
 Note=
 

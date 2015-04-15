@@ -1,8 +1,10 @@
 reset
 
 # File path
+elmspace = "/home/ash/"
+landua= "/1/home/dehgha2/"
 
-elmspace = "/home/ash/Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/PHI/"
+path= landua."Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/PHI/"
 
 
 set pm3d
@@ -15,23 +17,25 @@ set pm3d flush begin ftriangles scansforward interpolate 10,5
 set xlabel 'x'  font ",22"
 set ylabel 'y'  font ",22"
    
-   unset key
-   unset sur
-   set hidden3d
-   set view map 
-   set autoscale
-   set size square
-   # Format: index1 index2 A1 A2 A3 A4 B1 B2 B3 B4
-   splot elmspace."phi_xy.dat" using 1:2:($3+$4+$5+$6)
+unset key
+unset sur
+set hidden3d
+set view map 
+set autoscale
+set size square
+# Format: index1 index2 A1 A2 A3 A4 B1 B2 B3 B4
+splot path."phi_xy.dat" using 1:2:($3+$4+$5+$6)
 
 pause(-1)
    
-
+#####################################################################################################
 reset
 
 # File path
+elmspace = "/home/ash/"
+landua= "/1/home/dehgha2/"
 
-elmspace = "/home/ash/Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/PHI/"
+path= landua."Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/PHI/"
 
 
 set pm3d
@@ -43,22 +47,26 @@ set pm3d flush begin ftriangles scansforward interpolate 10,5
 
 set xlabel 'x'  font ",22"
 set ylabel 'z'  font ",22"
-   unset key
-   unset sur
-   set hidden3d
-   set view map 
-   set autoscale
-   set size square
-   # Format: index1 index2 A1 A2 A3 A4 B1 B2 B3 B4
-   splot elmspace."phi_xz.dat" using 1:2:($3+$4+$5+$6)
+unset key
+unset sur
+set hidden3d
+set view map 
+set autoscale
+set size square
+# Format: index1 index2 A1 A2 A3 A4 B1 B2 B3 B4
+splot path."phi_xz.dat" using 1:2:($3+$4+$5+$6)
 
-   pause(-1)
+pause(-1)
 
-   reset
+#####################################################################################################
+
+reset
 
 # File path
+elmspace = "/home/ash/"
+landua= "/1/home/dehgha2/"
 
-elmspace = "/home/ash/Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/PHI/"
+path= landua."Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/PHI/"
 
 
 set pm3d
@@ -70,11 +78,11 @@ set pm3d flush begin ftriangles scansforward interpolate 10,5
 
 set xlabel 'y'  font ",22"
 set ylabel 'z'  font ",22"
-   unset key
-   unset sur
-   set hidden3d
-   set view map 
-   set autoscale
-   set size square
-   # Format: index1 index2 A1 A2 A3 A4 B1 B2 B3 B4
-   splot elmspace."phi_yz.dat" using 1:2:($3+$4+$5+$6)
+unset key
+unset sur
+set hidden3d
+set view map 
+set autoscale
+set size square
+# Format: index1 index2 A1 A2 A3 A4 B1 B2 B3 B4
+splot path."phi_yz.dat" using 1:2:($3+$4+$5+$6)

@@ -5,16 +5,19 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   int Numb_of_Arms;
   double xAB;
 
-  Numb_of_Arms=1;
+  HOR=0;
+  VER=1;
+
+  Numb_of_Arms=4;
+  Numb_of_Periods=1.0;
 
   // 0 read
   // 1 make 
   // 2 random     
-                                                                                 
   Iomega=1;
 
-  LAM=1;
-  HEX=0;
+  LAM=0;
+  HEX=1;
 
   // Minimize with respect to box size (yes=1, No=0)
   box_min=1;
@@ -35,33 +38,28 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
  
   // Setting the generic chi parameters
   xAB=(0.14)*Ds;
-  std::cout<<"xAB="<<xAB<<std::endl;
-  std::cout<<"------------------------"<<std::endl;
+ 
   h_AAir=0.0*(0.08)*Ds;
   h_BAir=0.0*(0.12)*Ds; // This is a variable
   h_ASub=0.0*(0.08)*Ds;
   h_BSub=0.0*(0.06)*Ds;
 
-  // For 4Arm L=2.2
   if(LAM==1){
-    Lx=3.5/sqrt(Numb_of_Arms);
-    Ly=4.0;
-    Lz=4.0;
+    Lx=Numb_of_Periods*Lam_Period;
+    Ly=Numb_of_Periods*Lam_Period;
+    Lz=Numb_of_Periods*Lam_Period;
   }else if(HEX==1){
-    Lx=2.0;
-    Ly=sqrt(3)*2.0;
-    Lz=2.0;
+    Lx=Numb_of_Periods*Hex_Period;
+    Ly=Numb_of_Periods*Hex_Period*sqrt(3.0);
+    Lz=Numb_of_Periods*Ly;
   }else{
     std::cout<<"You have not chosen a phase yet."<<std::endl;
-    Lx=2.0;
-    Ly=2.0;
-    Lz=2.0;
+    Lx=3.0;
+    Ly=3.0;
+    Lz=3.0;
   }
 
-  std::cout<<"Lx="<<Lx<<std::endl;
-  std::cout<<"Ly="<<Ly<<std::endl;  
-  std::cout<<"Lz="<<Lz<<std::endl;
-  std::cout<<"-------------------------"<<std::endl;
+  
 
   dxyz[0]=Lx/Nx;
   dxyz[1]=Ly/Ny;
@@ -76,15 +74,6 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   f[6]=Ns[6]/Ds;  // fB3
   f[7]=Ns[7]/Ds;  // fB4
 
-  std::cout<<"fA1="<<f[0]<<std::endl;
-  std::cout<<"fA2="<<f[1]<<std::endl;
-  std::cout<<"fA3="<<f[2]<<std::endl;
-  std::cout<<"fA4="<<f[3]<<std::endl;
-  std::cout<<"fB1="<<f[4]<<std::endl;
-  std::cout<<"fB2="<<f[5]<<std::endl;
-  std::cout<<"fB3="<<f[6]<<std::endl;
-  std::cout<<"fB4="<<f[7]<<std::endl;
-  std::cout<<"-------------------------"<<std::endl;
 
   // Setting up the individual chi values
   chi[0]=xAB;    
@@ -216,7 +205,35 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
       }
     }
   }
- 
 
-
+  std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+  std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+  std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+  std::cout<<"++++++++++++++++++ Thin Film Project +++++++++++++++++++++++++"<<std::endl;
+  std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+  std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+  if(LAM==1){std::cout<<"Phase= Lam"<<std::endl;}
+  else if(HEX==1){std::cout<<"Phase= Hex"<<std::endl;}
+  else{std::cout<<"Warning: No Phase was chosen."<<std::endl;}
+  std::cout<<" "<<std::endl;
+  std::cout<<" "<<std::endl;
+  std::cout<<"xAB="<<xAB<<std::endl;
+  std::cout<<" "<<std::endl;
+  std::cout<<" "<<std::endl;
+  std::cout<<"Lx="<<Lx<<std::endl;
+  std::cout<<"Ly="<<Ly<<std::endl;  
+  std::cout<<"Lz="<<Lz<<std::endl;
+  std::cout<<" "<<std::endl;
+  std::cout<<" "<<std::endl;
+  std::cout<<"fA1="<<f[0]<<std::endl;
+  std::cout<<"fA2="<<f[1]<<std::endl;
+  std::cout<<"fA3="<<f[2]<<std::endl;
+  std::cout<<"fA4="<<f[3]<<std::endl;
+  std::cout<<"fB1="<<f[4]<<std::endl;
+  std::cout<<"fB2="<<f[5]<<std::endl;
+  std::cout<<"fB3="<<f[6]<<std::endl;
+  std::cout<<"fB4="<<f[7]<<std::endl;
+  std::cout<<" "<<std::endl;
+  std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+  std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
 };
