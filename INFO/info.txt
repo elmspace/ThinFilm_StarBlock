@@ -4,6 +4,8 @@
 # All the following information is for Bulk
 
 
+# General note: I have tested the effect of Nx, Ny and Nz on fE and N=20 gave the exact same results as N=38
+
 ######################################## 1-Arm ############################################
 LAM
 
@@ -25,9 +27,9 @@ Hex
 xAB= 0.14*Ntot
 NA1= 35
 Ntot= 100
-Lx= 3.8
-Ly= 6.3
-Lz= 5.9
+Lx= 3.75
+Ly= 6.53
+Lz= 6.63
 NX= 20
 Ny= 20
 Nz= 20
@@ -55,12 +57,12 @@ Hex
 xAB= 0.14*Ntot
 NA1= 35
 Ntot= 100
-Lx=
-Ly=
-Lz=
-NX=
-Ny=
-Nz=
+Lx= 2.98
+Ly= 5.14
+Lz= 4.69
+NX= 20
+Ny= 20
+Nz= 20
 
 Note=
 
@@ -85,12 +87,12 @@ Hex
 xAB= 0.14*Ntot
 NA1= 35
 Ntot= 100
-Lx=
-Ly=
-Lz=
-NX=
-Ny=
-Nz=
+Lx= 2.49
+Ly= 4.34
+Lz= 3.69
+NX= 20
+Ny= 20
+Nz= 20
 
 Note=
 
@@ -115,11 +117,11 @@ Hex
 xAB= 0.14*Ntot
 NA1= 35
 Ntot= 100
-Lx=
-Ly=
-Lz=
-NX=
-Ny=
-Nz=
+Lx= 2.20
+Ly= 3.79
+Lz= 3.49
+NX= 20
+Ny= 20
+Nz= 20
 
 Note=
