@@ -9,18 +9,20 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   VER=1;
 
   Numb_of_Arms=4;
-  Numb_of_Periods=1.0;
+  Numb_of_Periods=2.0;
 
   // 0 read
   // 1 make 
   // 2 random     
-  Iomega=1;
+  Iomega=0;
 
-  LAM=0;
-  HEX=1;
+  LAM=1;
+  HEX=0;
 
   // Minimize with respect to box size (yes=1, No=0)
   box_min=1;
+  box_min_xy_relax=1;
+  box_min_xyz_relax=0;
 
   // Degree of polymerization (Each arm of the star is 100)
   if(LAM==1){
@@ -39,10 +41,10 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   // Setting the generic chi parameters
   xAB=(0.14)*Ds;
  
-  h_AAir=0.0*(0.08)*Ds;
-  h_BAir=0.0*(0.12)*Ds; // This is a variable
-  h_ASub=0.0*(0.08)*Ds;
-  h_BSub=0.0*(0.06)*Ds;
+  h_AAir=1.0*(0.08)*Ds;
+  h_BAir=1.0*(0.06)*Ds; // This is a variable
+  h_ASub=1.0*(0.08)*Ds;
+  h_BSub=1.0*(0.06)*Ds;
 
   if(LAM==1){
     Lx=Numb_of_Periods*Lam_Period;
@@ -51,7 +53,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   }else if(HEX==1){
     Lx=Numb_of_Periods*Hex_Period;
     Ly=Numb_of_Periods*Hex_Period*sqrt(3.0);
-    Lz=Numb_of_Periods*Ly;
+    Lz=Ly;
   }else{
     std::cout<<"You have not chosen a phase yet."<<std::endl;
     Lx=3.0;

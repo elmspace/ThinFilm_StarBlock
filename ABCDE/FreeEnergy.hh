@@ -126,8 +126,8 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
   
     outputFile <<currentfE<<" "<<fE_homo<<" "<<dxyz[0]*Nx<<" "<<dxyz[1]*Ny<<" "<<dxyz[2]*Nz<<std::endl;
   
-    //size_adjust_2D_xy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);
-    size_adjust(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);
+    if(box_min_xy_relax==1){size_adjust_2D_xy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);}
+    if(box_min_xyz_relax==1){size_adjust(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);}
 
     if((oldfE<currentfE)||((abs(oldfE)-abs(currentfE))<1.0e-4)){
       msg=0;

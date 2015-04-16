@@ -27,6 +27,8 @@ using namespace std;
 // Trigger parameters
 int Iomega;
 int box_min;
+int box_min_xy_relax;
+int box_min_xyz_relax;
 int LAM, HEX;
 int HOR, VER;
 
