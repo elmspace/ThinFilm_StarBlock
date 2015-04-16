@@ -4,11 +4,14 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   int Ds;
   int Numb_of_Arms;
   double xAB;
+  double xBAir;
 
-  HOR=0;
-  VER=1;
+  xBAir=0.06;
 
-  Numb_of_Arms=4;
+  HOR=1;
+  VER=0;
+
+  Numb_of_Arms=1;
   Numb_of_Periods=2.0;
 
   // 0 read
@@ -41,10 +44,10 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   // Setting the generic chi parameters
   xAB=(0.14)*Ds;
  
-  h_AAir=1.0*(0.08)*Ds;
-  h_BAir=1.0*(0.06)*Ds; // This is a variable
-  h_ASub=1.0*(0.08)*Ds;
-  h_BSub=1.0*(0.06)*Ds;
+  h_AAir=(0.08)*Ds;
+  h_BAir=(xBAir)*Ds; // This is a variable
+  h_ASub=(0.08)*Ds;
+  h_BSub=(0.06)*Ds;
 
   if(LAM==1){
     Lx=Numb_of_Periods*Lam_Period;
