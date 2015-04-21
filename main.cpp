@@ -1,5 +1,6 @@
 
 #include "./global.hh"
+#include "./ABCDE/Set_ReadIn_Parameters.hh"
 #include "./ABCDE/Arms.hh"
 #include "./ABCDE/parametersABCD.hh"
 #include "./ABCDE/WaveVectors.hh"
@@ -17,7 +18,8 @@
 using namespace std;
 
 
-int main(){
+int main(int argc, char* argv[]){
+  
 
   double ****w;
   double ***eta;
@@ -30,7 +32,7 @@ int main(){
   double ***k_vector;
   double *dxyz;
   double **chiMatrix;
-  //int FFTW_MEASURE;
+  int pass_or_fail;
 
 
 
@@ -58,13 +60,18 @@ int main(){
 
   forward_plan=fftw_plan_r2r_3d(Nx,Ny,Nz,input_q,transformed_q,FFTW_REDFT10,FFTW_REDFT10,FFTW_REDFT10,FFTW_PRESERVE_INPUT);
   inverse_plan=fftw_plan_r2r_3d(Nx,Ny,Nz,transformed_q,final_q,FFTW_REDFT01,FFTW_REDFT01,FFTW_REDFT01,FFTW_PRESERVE_INPUT);
-  
-  parametersAB(chi,f,ds,Ns,dxyz,chiMatrix,h);
- 
-  omega(w);
 
-  FreeEnergy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix,h);
-  
+
+
+  pass_or_fail=Set_ReadIn_Parameters(argc,argv);
+
+  if(pass_or_fail==0){ // good to go
+    parametersAB(chi,f,ds,Ns,dxyz,chiMatrix,h);
+    omega(w);
+    FreeEnergy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix,h);
+  }else{ // Input was wrong
+    std::cout<<"You have entered the wrong input in the command line!"<<std::endl;
+  }
 
 
   //Destroy memory allocations------------

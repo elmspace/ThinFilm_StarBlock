@@ -2,28 +2,18 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   
   int i,j,k;
   int Ds;
-  int Numb_of_Arms;
+  double surface=0.0;
   double xAB;
-  double xBAir;
-
-  xBAir=0.06;
-
-  HOR=1;
-  VER=0;
-
-  Numb_of_Arms=1;
-  Numb_of_Periods=2.0;
+  
+  Numb_of_Periods=3.0;
 
   // 0 read
   // 1 make 
   // 2 random     
   Iomega=0;
 
-  LAM=1;
-  HEX=0;
-
   // Minimize with respect to box size (yes=1, No=0)
-  box_min=1;
+  box_min=0;
   box_min_xy_relax=1;
   box_min_xyz_relax=0;
 
@@ -40,23 +30,29 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
  
   // Total length
   Ds=Ns[0]+Ns[1]+Ns[2]+Ns[3]+Ns[4]+Ns[5]+Ns[6]+Ns[7];
- 
+
   // Setting the generic chi parameters
   xAB=(0.14)*Ds;
  
-  h_AAir=(0.08)*Ds;
-  h_BAir=(xBAir)*Ds; // This is a variable
-  h_ASub=(0.08)*Ds;
-  h_BSub=(0.06)*Ds;
+  h_AAir=surface*(0.08)*Ds;
+  h_BAir=surface*(xBAir)*Ds; // This is a variable
+  h_ASub=surface*(0.08)*Ds;
+  h_BSub=surface*(0.06)*Ds;
 
   if(LAM==1){
-    Lx=Numb_of_Periods*Lam_Period;
-    Ly=Numb_of_Periods*Lam_Period;
+    Lx=2.0*Lam_Period;
+    Ly=2.0*Lam_Period;
     Lz=Numb_of_Periods*Lam_Period;
   }else if(HEX==1){
-    Lx=Numb_of_Periods*Hex_Period;
-    Ly=Numb_of_Periods*Hex_Period*sqrt(3.0);
-    Lz=Ly;
+    if(VER==1){
+      Lx=Hex_Period;
+      Ly=Hex_Period*sqrt(3.0);
+      Lz=Numb_of_Periods*Hex_Period;
+    }else{
+      Lx=Hex_Period*sqrt(3.0);
+      Ly=Hex_Period;
+      Lz=Numb_of_Periods*Hex_Period;
+    }
   }else{
     std::cout<<"You have not chosen a phase yet."<<std::endl;
     Lx=3.0;
@@ -217,12 +213,22 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   std::cout<<"++++++++++++++++++ Thin Film Project +++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+  std::cout<<" "<<std::endl;
+  std::cout<<" "<<std::endl;
+  std::cout<<"Number of arms= "<<Numb_of_Arms<<std::endl;
+  std::cout<<" "<<std::endl;
+  std::cout<<" "<<std::endl;
   if(LAM==1){std::cout<<"Phase= Lam"<<std::endl;}
   else if(HEX==1){std::cout<<"Phase= Hex"<<std::endl;}
   else{std::cout<<"Warning: No Phase was chosen."<<std::endl;}
   std::cout<<" "<<std::endl;
   std::cout<<" "<<std::endl;
+  if(HOR==1){std::cout<<"Horizontal Direction."<<std::endl;}
+  if(VER==1){std::cout<<"Vertical Direction."<<std::endl;}
+  std::cout<<" "<<std::endl;
+  std::cout<<" "<<std::endl;
   std::cout<<"xAB="<<xAB<<std::endl;
+  std::cout<<"xBAir="<<xBAir<<std::endl;
   std::cout<<" "<<std::endl;
   std::cout<<" "<<std::endl;
   std::cout<<"Lx="<<Lx<<std::endl;
@@ -238,6 +244,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   std::cout<<"fB2="<<f[5]<<std::endl;
   std::cout<<"fB3="<<f[6]<<std::endl;
   std::cout<<"fB4="<<f[7]<<std::endl;
+  std::cout<<"Total="<<f[0]+f[1]+f[2]+f[3]+f[4]+f[5]+f[6]+f[7]<<std::endl;
   std::cout<<" "<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;

@@ -1,5 +1,5 @@
-//#include </usr/local/include/fftw3.h>  // This is for My Mac Pro
-#include </opt/sharcnet/fftw/3.3.2/intel/include/fftw3.h> // This is for Sharcnet
+#include </usr/local/include/fftw3.h>  // This is for My Mac Pro
+//#include </opt/sharcnet/fftw/3.3.2/intel/include/fftw3.h> // This is for Sharcnet
 //#include </usr/include/fftw3.h> // This is for use on Landua
 //#include </usr/local/include/fftw3.h> // This is for elmspace2
 
@@ -35,6 +35,9 @@ int HOR, VER;
 double Numb_of_Periods;
 double Lam_Period;
 double Hex_Period;
+
+double xBAir;
+int Numb_of_Arms;
 
 // FFTW parameters
 fftw_plan forward_plan, inverse_plan;
