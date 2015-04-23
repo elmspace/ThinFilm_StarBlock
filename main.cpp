@@ -20,8 +20,13 @@ using namespace std;
 
 
 int main(int argc, char* argv[]){
-  
 
+  // The arguments read in are in order:
+  // 1-> Number of Arms, it can be {1, 2, 3 or 4}
+  // 2-> Phase, it can be {Lam or Hex}
+  // 3-> Direction of domains, it can be {Ver or Hor}
+  // 4-> Starting xBAir value {0.06 for example}
+  
   double ****w;
   double ***eta;
   double ****phi;

@@ -1,6 +1,6 @@
 void Mod1(double ****w, double ****phi, double ***eta, double *Ns, double ds, double ***k_vector, double *chi, double *dxyz, double **chiMatrix, double ****h, double *f){
 
-  double del_xBAir=0.02;
+  double del_xBAir=0.01;
   double max_xBAir=0.2;
 
   int do_1_calc=1; // if =1 this will just do one calculation, if =0 it will break and wont continue
