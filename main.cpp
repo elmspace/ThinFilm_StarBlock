@@ -14,6 +14,7 @@
 #include "./ABCDE/size_adjust_2D_xy.hh"
 #include "./ABCDE/SaveData.hh"
 #include "./ABCDE/FreeEnergy.hh"
+#include "./MODS/Mod1.hh"
 
 using namespace std;
 
@@ -66,9 +67,7 @@ int main(int argc, char* argv[]){
   pass_or_fail=Set_ReadIn_Parameters(argc,argv);
 
   if(pass_or_fail==0){ // good to go
-    parametersAB(chi,f,ds,Ns,dxyz,chiMatrix,h);
-    omega(w);
-    FreeEnergy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix,h);
+    Mod1(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix,h,f);
   }else{ // Input was wrong
     std::cout<<"You have entered the wrong input in the command line!"<<std::endl;
   }

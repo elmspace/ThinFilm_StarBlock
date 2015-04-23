@@ -2,7 +2,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
 
   
  
-  int     maxIter=50; 
+  int     maxIter=500; 
   int     msg=1;
   int     i,j,k,iter,chain,ii,jj; 
   double  currentfE, oldfE, deltafE,oldfE_iter; 
@@ -39,8 +39,8 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
     currentfE=0.0;
     deltafE=0.0;
   
-    epsilon=0.025;
-    gamma=0.025;
+    epsilon=0.05;
+    gamma=0.05;
   
     iter=0;  
     
@@ -106,7 +106,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
       
       deltafE=fabs(currentfE-oldfE_iter);
 
-      std::cout<<"Iter="<<iter<<"  fE="<<currentfE<<"  delW=" <<deltaW<<"  delfE="<<currentfE-fE_homo<<std::endl;
+      //std::cout<<"Iter="<<iter<<"  fE="<<currentfE<<"  delW=" <<deltaW<<"  delfE="<<currentfE-fE_homo<<std::endl;
       oldfE_iter=currentfE;
 
       // Updating the new W-field
@@ -129,7 +129,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
     if(box_min_xy_relax==1){size_adjust_2D_xy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);}
     if(box_min_xyz_relax==1){size_adjust(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);}
 
-    if((oldfE<currentfE)||((abs(oldfE)-abs(currentfE))<1.0e-4)){
+    if((oldfE<currentfE)||((abs(oldfE)-abs(currentfE))<1.0e-6)){
       msg=0;
     }
     if(msg==1){
@@ -141,6 +141,11 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
     
   }while(msg==1);
 
+  // Setting the global free energies
+  global_fE=oldfE; // because the old must have been smaller for the loop to have ended.
+  flobal_HomfE=fE_homo;
+
+  
   outputFile <<"Done"<<std::endl;
   outputFile.close();
 

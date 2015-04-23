@@ -2,7 +2,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   
   int i,j,k;
   int Ds;
-  double surface=0.0;
+  double surface=0.25; // turn on=1 or off=0 the surface interactions
   double xAB;
   
   Numb_of_Periods=3.0;
@@ -13,7 +13,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   Iomega=0;
 
   // Minimize with respect to box size (yes=1, No=0)
-  box_min=0;
+  box_min=1;
   box_min_xy_relax=1;
   box_min_xyz_relax=0;
 
@@ -39,6 +39,14 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   h_ASub=surface*(0.08)*Ds;
   h_BSub=surface*(0.06)*Ds;
 
+  // setting the global values:
+  global_xAB=xAB;
+  global_xAAir=h_AAir;
+  global_xASub=h_ASub;
+  global_xBAir=h_BAir;
+  global_xBSub=h_BSub;
+  //__________________________
+
   if(LAM==1){
     Lx=2.0*Lam_Period;
     Ly=2.0*Lam_Period;
@@ -61,10 +69,13 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   }
 
   
-
-  dxyz[0]=Lx/Nx;
-  dxyz[1]=Ly/Ny;
-  dxyz[2]=Lz/Nz;
+  if(Round==1){
+    dxyz[0]=Lx/Nx;
+    dxyz[1]=Ly/Ny;
+    dxyz[2]=Lz/Nz;
+  }else{
+    // Will be using the previous dxyz values. The code is looping.
+  }
  
   f[0]=Ns[0]/Ds;  // fA1
   f[1]=Ns[1]/Ds;  // fA2
@@ -206,7 +217,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
       }
     }
   }
-
+  /* This is print out of the code parameters, You can un-comment it to check the vraiables.
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
@@ -223,12 +234,17 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   else{std::cout<<"Warning: No Phase was chosen."<<std::endl;}
   std::cout<<" "<<std::endl;
   std::cout<<" "<<std::endl;
-  if(HOR==1){std::cout<<"Horizontal Direction."<<std::endl;}
-  if(VER==1){std::cout<<"Vertical Direction."<<std::endl;}
+  if(HOR==1){std::cout<<"Direction: Horizontal"<<std::endl;}
+  if(VER==1){std::cout<<"Direction: Vertical"<<std::endl;}
   std::cout<<" "<<std::endl;
   std::cout<<" "<<std::endl;
   std::cout<<"xAB="<<xAB<<std::endl;
-  std::cout<<"xBAir="<<xBAir<<std::endl;
+  std::cout<<" "<<std::endl;
+  std::cout<<" "<<std::endl;
+  std::cout<<"xAAir="<<h_AAir<<std::endl;
+  std::cout<<"xBAir="<<h_BAir<<std::endl;
+  std::cout<<"xAsub="<<h_ASub<<std::endl;
+  std::cout<<"xBSub="<<h_BSub<<std::endl;
   std::cout<<" "<<std::endl;
   std::cout<<" "<<std::endl;
   std::cout<<"Lx="<<Lx<<std::endl;
@@ -248,4 +264,5 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   std::cout<<" "<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+  */
 };

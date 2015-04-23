@@ -32,12 +32,16 @@ int box_min_xyz_relax;
 int LAM, HEX;
 int HOR, VER;
 
+int Round; // This is used to check the loop condition (because I want to use previous results for Round>1)
+
 double Numb_of_Periods;
 double Lam_Period;
 double Hex_Period;
 
 double xBAir;
 int Numb_of_Arms;
+
+double global_fE, flobal_HomfE, global_xAB, global_xAAir, global_xASub, global_xBAir, global_xBSub;
 
 // FFTW parameters
 fftw_plan forward_plan, inverse_plan;
