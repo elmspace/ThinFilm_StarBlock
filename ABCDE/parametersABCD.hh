@@ -57,7 +57,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
       Ly=Hex_Period*sqrt(3.0);
       Lz=Numb_of_Periods*Hex_Period;
     }else{
-      Lx=Hex_Period*sqrt(3.0);
+      Lx=Hex_Period*sqrt(4.0); // changing this a little
       Ly=Hex_Period;
       Lz=Numb_of_Periods*Hex_Period;
     }
