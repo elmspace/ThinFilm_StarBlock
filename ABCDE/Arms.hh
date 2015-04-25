@@ -12,6 +12,7 @@ void Arms(int Numb_of_Arms, double *Ns){
     // Setting the size of the period for the system
     Lam_Period=3.45;
     Hex_Period=3.75;
+    BCC_Period=4.5;
   }else if(Numb_of_Arms==2){ // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Ns[1]=Ns[0];  // A2                                                                                                                      
     Ns[2]=1;  // A3                                                                                                                      
@@ -23,6 +24,7 @@ void Arms(int Numb_of_Arms, double *Ns){
    // Setting the size of the period for the system
     Lam_Period=2.72;
     Hex_Period=2.98;
+    BCC_Period=3.33;
   }else if(Numb_of_Arms==3){ // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Ns[1]=Ns[0];  // A2                                                                                                                      
     Ns[2]=Ns[0];  // A3                                                                                                                      
@@ -34,6 +36,7 @@ void Arms(int Numb_of_Arms, double *Ns){
     // Setting the size of the period for the system
     Lam_Period=2.32;
     Hex_Period=2.49;
+    BCC_Period=2.77;
   }else if(Numb_of_Arms==4){ // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Ns[1]=Ns[0];  // A2                                                                                                                      
     Ns[2]=Ns[0];  // A3                                                                                                                      
@@ -45,6 +48,7 @@ void Arms(int Numb_of_Arms, double *Ns){
     // Setting the size of the period for the system
     Lam_Period=2.0;
     Hex_Period=2.2;
+    BCC_Period=2.3;
   }else{
     // Error
     std::cout<<"The number of arms you have selected is incorrect! (Arms.hh)"<<std::endl;

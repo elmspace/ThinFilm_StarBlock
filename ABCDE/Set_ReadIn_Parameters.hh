@@ -18,9 +18,15 @@ int Set_ReadIn_Parameters(int numb_of_arg, char* arg_input[]){
     if(strcmp( arg_input[2], "Lam") == 0){
       LAM=1;
       HEX=0;
+      BCC=0;
     }else if(strcmp( arg_input[2], "Hex") == 0){
       LAM=0;
       HEX=1;
+      BCC=0;
+    }else if(strcmp( arg_input[2], "BCC") == 0){
+      LAM=0;
+      HEX=0;
+      BCC=1;
     }else{
       std::cout<<"Something wrong with: Phase!"<<std::endl;
       pass_or_fail=1;

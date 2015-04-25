@@ -3,8 +3,9 @@ reset
 # File path
 elmspace = "/home/ash/"
 landua= "/1/home/dehgha2/"
+mac = "/Users/ashkandehghan/"
 
-path= landua."Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/PHI/"
+path= mac."Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/PHI/"
 
 
 set pm3d
@@ -34,8 +35,9 @@ reset
 # File path
 elmspace = "/home/ash/"
 landua= "/1/home/dehgha2/"
-
-path= landua."Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/PHI/"
+mac = "/Users/ashkandehghan/"
+   
+path= mac."Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/PHI/"
 
 
 set pm3d
@@ -65,8 +67,9 @@ reset
 # File path
 elmspace = "/home/ash/"
 landua= "/1/home/dehgha2/"
-
-path= landua."Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/PHI/"
+mac = "/Users/ashkandehghan/"
+   
+path= mac."Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/PHI/"
 
 
 set pm3d

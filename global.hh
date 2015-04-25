@@ -29,7 +29,7 @@ int Iomega;
 int box_min;
 int box_min_xy_relax;
 int box_min_xyz_relax;
-int LAM, HEX;
+int LAM, HEX, BCC;
 int HOR, VER;
 
 int Round; // This is used to check the loop condition (because I want to use previous results for Round>1)
@@ -37,6 +37,7 @@ int Round; // This is used to check the loop condition (because I want to use pr
 double Numb_of_Periods;
 double Lam_Period;
 double Hex_Period;
+double BCC_Period;
 
 double xBAir;
 int Numb_of_Arms;
