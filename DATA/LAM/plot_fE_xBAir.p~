@@ -1,0 +1,18 @@
+reset
+
+
+# File path
+elmspace = "/home/ash/"
+landua= "/1/home/dehgha2/"
+mac = "/Users/ashkandehghan/"
+
+path= elmspace."Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/DATA/LAM/"
+
+
+
+
+plot path."4Arm_Hor_Ver.dat" using 6:1  title "Parallel" w lp lc 1 pt 4 lw 4,\
+path."4Arm_Hor_Ver.dat" using 6:9  title "Perpendicular" w lp lc 2 pt 6 lw 4
+
+    pause(-1)
+
