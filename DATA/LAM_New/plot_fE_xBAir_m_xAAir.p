@@ -1,7 +1,7 @@
 reset
 
-set term postscript enhanced color
-set output "~/Desktop/fE.ps"
+#set term postscript enhanced color
+#set output "~/Desktop/fE.ps"
 
 set xlabel '{/Symbol D}{/Symbol c}'  font ",32" offset 0,-1
 set ylabel 'fE'  font ",32"
@@ -14,7 +14,7 @@ elmspace = "/home/ash/"
 landua= "/1/home/dehgha2/"
 mac = "/Users/ashkandehghan/"
 
-path= elmspace."Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/DATA/LAM/"
+path= landua."Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/DATA/LAM_New/"
 
 
 
@@ -30,8 +30,8 @@ set ytics font ", 18"
 
 f(x) = 0.0
 
-plot path."4Arm_Hor_Ver.dat" using ($6-$4):1  title "Parallel" w lp lc 1 pt 4 lw 4,\
-path."4Arm_Hor_Ver.dat" using ($6-$4):9  title "Perpendicular" w lp lc 2 pt 6 lw 4
+plot path."4Arm_Hor.dat" using ($6-$4):1  title "Parallel" w lp lc 1 pt 4 lw 4,\
+path."4Arm_Ver.dat" using ($6-$4):1  title "Perpendicular" w lp lc 2 pt 6 lw 4
 
     pause(-1)
 
