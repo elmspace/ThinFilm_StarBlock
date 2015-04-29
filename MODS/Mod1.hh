@@ -16,7 +16,7 @@ void Mod1(double ****w, double ****phi, double ***eta, double *Ns, double ds, do
     
     parametersAB(chi,f,ds,Ns,dxyz,chiMatrix,h);
     omega(w);
-    std::cout<<"Round="<<Round<<"   xBAir="<<global_xBAir<<std::endl;
+    std::cout<<"Round="<<Round<<"   xBAir="<<global_xBAir<<"   delx="<<global_xBAir-global_xAAir<<std::endl;
     FreeEnergy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix,h);
     
     std::ofstream outputFile37("./RESULTS/MOD1.dat" , ios::app);

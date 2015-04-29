@@ -2,20 +2,20 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   
   int i,j,k;
   int Ds;
-  double surface=0.0; // turn on=1 or off=0 the surface interactions
+  double surface=0.25; // turn on=1 or off=0 the surface interactions
   double xAB;
   
-  Numb_of_Periods=1.0;
+  Numb_of_Periods=3.0;
 
   // 0 read
   // 1 make 
   // 2 random     
-  Iomega=1;
+  Iomega=0;
 
   // Minimize with respect to box size (yes=1, No=0)
-  box_min=1;
-  box_min_xy_relax=0;
-  box_min_xyz_relax=1;
+  box_min=0;
+  box_min_xy_relax=1;
+  box_min_xyz_relax=0;
 
   // Degree of polymerization (Each arm of the star is 100)
   if(LAM==1){

@@ -106,7 +106,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
       
       deltafE=fabs(currentfE-oldfE_iter);
 
-      std::cout<<"Iter="<<iter<<"  fE="<<currentfE<<"  delW=" <<deltaW<<"  delfE="<<currentfE-fE_homo<<std::endl;
+      //std::cout<<"Iter="<<iter<<"  fE="<<currentfE<<"  delW=" <<deltaW<<"  delfE="<<currentfE-fE_homo<<std::endl;
       oldfE_iter=currentfE;
 
       // Updating the new W-field
