@@ -13,7 +13,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   Iomega=0;
 
   // Minimize with respect to box size (yes=1, No=0)
-  box_min=0;
+  box_min=1;
   box_min_xy_relax=1;
   box_min_xyz_relax=0;
 
@@ -60,7 +60,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
       Lz=Numb_of_Periods*Hex_Period;
     }else{
       Lx=Hex_Period*sqrt(4.0); // changing this a little
-      Ly=Hex_Period;
+      Ly=3.0*Hex_Period;
       Lz=Numb_of_Periods*Hex_Period;
     }
   }else if(BCC==1){
@@ -223,7 +223,8 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
       }
     }
   }
-  /* This is print out of the code parameters, You can un-comment it to check the vraiables.
+  // This is print out of the code parameters, You can un-comment it to check the vraiables.
+  /*
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;

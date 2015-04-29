@@ -39,8 +39,8 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
     currentfE=0.0;
     deltafE=0.0;
   
-    epsilon=0.05;
-    gamma=0.05;
+    epsilon=0.025;
+    gamma=0.025;
   
     iter=0;  
     

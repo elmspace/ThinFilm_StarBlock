@@ -3,7 +3,7 @@ void Mod1(double ****w, double ****phi, double ***eta, double *Ns, double ds, do
   double del_xBAir=(0.01);
   double max_xBAir=0.2;
 
-  int do_1_calc=1; // if =1 this will just do one calculation, if =0 it will break and wont continue
+  int do_1_calc=0; // if =1 this will just do one calculation, if =0 it will break and wont continue
 
   // Cleaning the .dat file
   std::ofstream outputFile37("./RESULTS/MOD1.dat");
