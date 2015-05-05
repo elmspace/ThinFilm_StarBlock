@@ -21,7 +21,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   if(LAM==1){
     Ns[0]=50;  // A1
   }else if(HEX==1){
-    Ns[0]=35;  // A1
+    Ns[0]=30;  // A1
   } else if(BCC==1){
     Ns[0]=35;  // A1
   }else{
