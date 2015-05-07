@@ -15,7 +15,7 @@ void Arms(int Numb_of_Arms, double *Ns){
     //BCC_Period=4.5; //xAB 14
 
     Lam_Period=3.83; //xAB 20
-    Hex_Period=4.13; //xAB 20
+    Hex_Period=3.78; //xAB 20
     BCC_Period=5.00; //xAB 20 
   }else if(Numb_of_Arms==2){ // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Ns[1]=Ns[0];  // A2                                                                                                                      
@@ -31,7 +31,7 @@ void Arms(int Numb_of_Arms, double *Ns){
     //BCC_Period=3.33; //xAB14
 
     Lam_Period=2.97; //xAB20
-    Hex_Period=3.25; //xAB20
+    Hex_Period=2.90; //xAB20
     BCC_Period=4.00; //xAB20 
   }else if(Numb_of_Arms==3){ // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Ns[1]=Ns[0];  // A2                                                                                                                      
@@ -47,7 +47,7 @@ void Arms(int Numb_of_Arms, double *Ns){
     //BCC_Period=2.77; //xAB14
 
     Lam_Period=2.49; //xAB20
-    Hex_Period=2.68; //xAB20
+    Hex_Period=2.43; //xAB20
     BCC_Period=3.00; //xAB20 
   }else if(Numb_of_Arms==4){ // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Ns[1]=Ns[0];  // A2                                                                                                                      
