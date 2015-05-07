@@ -37,8 +37,8 @@ clear j;
 clear k;
 clear ii;
 % Thres3old for the isosurf, 
-cutA=0.4;
-cutB=0.7;
+cutA=0.35;
+cutB=0.65;
 
 
 axis vis3d;

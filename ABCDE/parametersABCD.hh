@@ -2,7 +2,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   
   int i,j,k;
   int Ds;
-  double surface=0.25; // turn on=1 or off=0 the surface interactions
+  double surface=0.025; // turn on=1 or off=0 the surface interactions
   double xAB;
 
 
@@ -31,7 +31,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   
   // Degree of polymerization (Each arm of the star is 100)
   if(LAM==1){
-    Ns[0]=35;  // A1
+    Ns[0]=50;  // A1
   }else if(HEX==1){
     Ns[0]=35;  // A1
   } else if(BCC==1){
