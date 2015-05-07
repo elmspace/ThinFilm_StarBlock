@@ -4,7 +4,9 @@ void Mod1(double ****w, double ****phi, double ***eta, double *Ns, double ds, do
   double max_xBAir=0.2;
 
   int do_1_calc=1; // if =1 this will just do one calculation, if =0 it will break and wont continue
+  Bulk_Calc=1; // Bulk_Calc=1 will do a 1period system in bulk
 
+  
   // Cleaning the .dat file
   std::ofstream outputFile37("./RESULTS/MOD1.dat");
   outputFile37 << std::endl;

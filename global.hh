@@ -31,6 +31,7 @@ int box_min_xy_relax;
 int box_min_xyz_relax;
 int LAM, HEX, BCC;
 int HOR, VER;
+int Bulk_Calc;
 
 int Round; // This is used to check the loop condition (because I want to use previous results for Round>1)
 

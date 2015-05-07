@@ -2,11 +2,17 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   
   int i,j,k;
   int Ds;
-  double surface=0.01; // turn on=1 or off=0 the surface interactions
+  double surface=0.25; // turn on=1 or off=0 the surface interactions
   double xAB;
-  
-  Numb_of_Periods=3.0;
 
+
+  if(Bulk_Calc==1){
+    Numb_of_Periods=1.0;
+    surface=0.0;
+  }else{
+    Numb_of_Periods=3.0;
+  }
+  
   // 0 read
   // 1 make 
   // 2 random     
@@ -14,12 +20,18 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
 
   // Minimize with respect to box size (yes=1, No=0)
   box_min=1;
-  box_min_xy_relax=1;
-  box_min_xyz_relax=0;
+  if(Bulk_Calc==1){
+    box_min_xy_relax=0;
+    box_min_xyz_relax=1;
+  }else{
+    box_min_xy_relax=1;
+    box_min_xyz_relax=0;
+  }
 
+  
   // Degree of polymerization (Each arm of the star is 100)
   if(LAM==1){
-    Ns[0]=50;  // A1
+    Ns[0]=35;  // A1
   }else if(HEX==1){
     Ns[0]=35;  // A1
   } else if(BCC==1){
@@ -49,31 +61,41 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   global_xBSub=h_BSub;
   //__________________________
 
-  if(LAM==1){
-    Lx=2.0*Lam_Period;
-    Ly=2.0*Lam_Period;
-    Lz=Numb_of_Periods*Lam_Period;
-  }else if(HEX==1){
-    if(VER==1){
+  if(Bulk_Calc==1){
+    if(LAM==1){
+      Lx=Lam_Period;
+      Ly=Lam_Period;
+      Lz=Lam_Period;
+    }else if(HEX==1){
       Lx=Hex_Period;
       Ly=Hex_Period*sqrt(3.0);
-      Lz=Numb_of_Periods*Hex_Period;
+      Lz=Hex_Period;
+    }else if(BCC==1){
+      Lx=BCC_Period;
+      Ly=BCC_Period;
+      Lz=BCC_Period;
     }else{
-      Lx=Hex_Period*sqrt(3.0);
-      Ly=Hex_Period;
-      Lz=Numb_of_Periods*Hex_Period;
+      std::cout<<"You have not chosen a phase yet."<<std::endl;
     }
-  }else if(BCC==1){
-    Lx=BCC_Period;
-    Ly=BCC_Period;
-    Lz=BCC_Period;
   }else{
-    std::cout<<"You have not chosen a phase yet."<<std::endl;
-    Lx=3.0;
-    Ly=3.0;
-    Lz=3.0;
+    if(LAM==1){
+      Lx=2.0*Lam_Period;
+      Ly=2.0*Lam_Period;
+      Lz=Numb_of_Periods*Lam_Period;
+    }else if(HEX==1){
+      if(VER==1){
+	Lx=Hex_Period;
+	Ly=Hex_Period*sqrt(3.0);
+	Lz=Numb_of_Periods*Hex_Period;
+      }else{
+	Lx=Hex_Period*sqrt(3.0);
+	Ly=Hex_Period;
+	Lz=Numb_of_Periods*Hex_Period;
+      }
+    }else{
+      std::cout<<"You have not chosen a phase yet."<<std::endl;
+    }
   }
-
   
   if(Round==1){
     dxyz[0]=Lx/Nx;
@@ -224,7 +246,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     }
   }
   // This is print out of the code parameters, You can un-comment it to check the vraiables.
-  /*
+
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
@@ -271,5 +293,5 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   std::cout<<" "<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
-  */
+
 };
