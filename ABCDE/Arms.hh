@@ -63,7 +63,7 @@ void Arms(int Numb_of_Arms, double *Ns){
     //BCC_Period=2.3; //xAB14
 
     Lam_Period=2.18; //xAB20
-    Hex_Period=2.39; //xAB20
+    Hex_Period=2.13; //xAB20
     BCC_Period=3.00; //xAB20  
   }else{
     // Error
