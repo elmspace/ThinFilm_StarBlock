@@ -2,7 +2,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   
   int i,j,k;
   int Ds;
-  double surface=0.25; // turn on=1 or off=0 the surface interactions
+  double surface=0.01; // turn on=1 or off=0 the surface interactions
   double xAB;
   
   Numb_of_Periods=3.0;
@@ -21,7 +21,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   if(LAM==1){
     Ns[0]=50;  // A1
   }else if(HEX==1){
-    Ns[0]=30;  // A1
+    Ns[0]=35;  // A1
   } else if(BCC==1){
     Ns[0]=35;  // A1
   }else{
@@ -59,8 +59,8 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
       Ly=Hex_Period*sqrt(3.0);
       Lz=Numb_of_Periods*Hex_Period;
     }else{
-      Lx=Hex_Period*sqrt(4.0); // changing this a little
-      Ly=3.0*Hex_Period;
+      Lx=Hex_Period*sqrt(3.0);
+      Ly=Hex_Period;
       Lz=Numb_of_Periods*Hex_Period;
     }
   }else if(BCC==1){
