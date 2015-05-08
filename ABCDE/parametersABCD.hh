@@ -2,7 +2,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   
   int i,j,k;
   int Ds;
-  double surface=1.0; // turn on=1 or off=0 the surface interactions
+  double surface=0.25; // turn on=1 or off=0 the surface interactions
   double xAB;
 
 
@@ -48,17 +48,11 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   // Setting the generic chi parameters
   xAB=(0.14)*Ds;
 
-  /*
+
   h_AAir=surface*(0.08)*Ds;
   h_BAir=surface*(xBAir)*Ds; // This is a variable
   h_ASub=surface*(0.08)*Ds;
   h_BSub=surface*(0.06)*Ds;
-  */
-  // doing some test
-  h_AAir=surface*(0.0)*Ds;
-  h_BAir=surface*(xBAir)*Ds; // This is a variable
-  h_ASub=surface*(0.0)*Ds;
-  h_BSub=surface*(0.0)*Ds;
 
   // setting the global values:
   global_xAB=xAB;
@@ -103,6 +97,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
       std::cout<<"You have not chosen a phase yet."<<std::endl;
     }
   }
+ 
   
   if(Round==1){
     dxyz[0]=Lx/Nx;
@@ -111,6 +106,9 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   }else{
     // Will be using the previous dxyz values. The code is looping.
   }
+  // Defining the film thickness and the epsilon
+  FilmThickness=Lz-dxyz[2];
+  epsilon=FilmThickness/15.0;
  
   f[0]=Ns[0]/Ds;  // fA1
   f[1]=Ns[1]/Ds;  // fA2
@@ -220,24 +218,24 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     for(j=0;j<Ny;j++){
       for(k=0;k<Nz;k++){
 	
-	if(k==0){ // k=0 is the substrate surface
-	  h[0][i][j][k]=h_ASub;
-	  h[1][i][j][k]=h_ASub;
-	  h[2][i][j][k]=h_ASub;
-	  h[3][i][j][k]=h_ASub;
-	  h[4][i][j][k]=h_BSub;
-	  h[5][i][j][k]=h_BSub;
-	  h[6][i][j][k]=h_BSub;
-	  h[7][i][j][k]=h_BSub;
-	}else if(k==(Nz-1)){ // k=Nz-1 is the air interface
-	  h[0][i][j][k]=h_AAir;
-	  h[1][i][j][k]=h_AAir;
-	  h[2][i][j][k]=h_AAir;
-	  h[3][i][j][k]=h_AAir;
-	  h[4][i][j][k]=h_BAir;
-	  h[5][i][j][k]=h_BAir;
-	  h[6][i][j][k]=h_BAir;
-	  h[7][i][j][k]=h_BAir;
+	if((k*dxyz[2]>=0.0)&&(k*dxyz[2]<=epsilon)){ // k=0 is the substrate surface
+	  h[0][i][j][k]=h_ASub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[1][i][j][k]=h_ASub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[2][i][j][k]=h_ASub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[3][i][j][k]=h_ASub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[4][i][j][k]=h_BSub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[5][i][j][k]=h_BSub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[6][i][j][k]=h_BSub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[7][i][j][k]=h_BSub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	}else if((k*dxyz[2]>=(FilmThickness-epsilon))&&(k*dxyz[2]<=(FilmThickness+dxyz[2]))){ // k=Nz-1 is the air interface
+	  h[0][i][j][k]=h_AAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[1][i][j][k]=h_AAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[2][i][j][k]=h_AAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[3][i][j][k]=h_AAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[4][i][j][k]=h_BAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[5][i][j][k]=h_BAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[6][i][j][k]=h_BAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[7][i][j][k]=h_BAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
 	}else{ // No surface interaction in bulk
 	  h[0][i][j][k]=0.0;
 	  h[1][i][j][k]=0.0;

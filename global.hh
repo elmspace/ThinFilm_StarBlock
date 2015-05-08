@@ -40,6 +40,10 @@ double Lam_Period;
 double Hex_Period;
 double BCC_Period;
 
+double FilmThickness;
+double PHI_0_tot;
+double epsilon; // This is for the thin-film geometry
+
 double xBAir;
 int Numb_of_Arms;
 

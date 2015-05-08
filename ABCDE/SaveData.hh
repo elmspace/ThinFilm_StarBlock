@@ -1,4 +1,4 @@
-void SaveData(double ****phi, double ****w, double *dxyz){
+void SaveData(double ****phi,double ***PHI_0, double ****w, double *dxyz){
 
   int i, j ,k;
 
@@ -78,9 +78,27 @@ void SaveData(double ****phi, double ****w, double *dxyz){
   // Writting to data files
   std::ofstream outputFile46("./PHI/phi_x.dat");
   for(i=0;i<Nx;i++){
-    outputFile46 <<i*dxyz[0]<<" "<<phi[0][i][Ny/2][Nz/2]<<" "<<phi[1][i][Ny/2][Nz/2]<<" "<<phi[2][i][Ny/2][Nz/2]<<" "<<phi[3][i][Ny/2][Nz/2]<<" "<<phi[4][i][Ny/2][Nz/2]<< " "<<phi[5][i][Ny/2][Nz/2]<<" "<<phi[6][i][Ny/2][Nz/2]<<" "<<phi[7][i][Ny/2][Nz/2]<<std::endl;
+    outputFile46 <<i*dxyz[0]<<" "<<phi[0][i][Ny/2][Nz/2]<<" "<<phi[1][i][Ny/2][Nz/2]<<" "<<phi[2][i][Ny/2][Nz/2]<<" "<<phi[3][i][Ny/2][Nz/2]<<" "<<phi[4][i][Ny/2][Nz/2]<< " "<<phi[5][i][Ny/2][Nz/2]<<" "<<phi[6][i][Ny/2][Nz/2]<<" "<<phi[7][i][Ny/2][Nz/2]<<" "<<PHI_0[i][Ny/2][Nz/2]<<std::endl;
   }
   outputFile46.close();
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // Writting to data files
+  std::ofstream outputFile47("./PHI/phi_y.dat");
+  for(j=0;j<Ny;j++){
+    outputFile47 <<j*dxyz[1]<<" "<<phi[0][Nx/2][j][Nz/2]<<" "<<phi[1][Nx/2][j][Nz/2]<<" "<<phi[2][Nx/2][j][Nz/2]<<" "<<phi[3][Nx/2][j][Nz/2]<<" "<<phi[4][Nx/2][j][Nz/2]<< " "<<phi[5][Nx/2][j][Nz/2]<<" "<<phi[6][Nx/2][j][Nz/2]<<" "<<phi[7][Nx/2][j][Nz/2]<<" "<<PHI_0[Nx/2][j][Nz/2]<<std::endl;
+  }
+  outputFile47.close();
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // Writting to data files
+  std::ofstream outputFile48("./PHI/phi_z.dat");
+  for(k=0;k<Nz;k++){
+    outputFile48 <<k*dxyz[2]<<" "<<phi[0][Nx/2][Ny/2][k]<<" "<<phi[1][Nx/2][Ny/2][k]<<" "<<phi[2][Nx/2][Ny/2][k]<<" "<<phi[3][Nx/2][Ny/2][k]<<" "<<phi[4][Nx/2][Ny/2][k]<< " "<<phi[5][Nx/2][Ny/2][k]<<" "<<phi[6][Nx/2][Ny/2][k]<<" "<<phi[7][Nx/2][Ny/2][k]<<" "<<PHI_0[Nx/2][Ny/2][k]<<std::endl;
+  }
+  outputFile48.close();
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       
  

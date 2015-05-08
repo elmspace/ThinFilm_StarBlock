@@ -1,8 +1,8 @@
-void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double ds, double ***k_vector, double *chi, double *dxyz, double **chiMatrix, double ****h){
+void FreeEnergy(double ****w, double ****phi, double ***eta, double ***PHI_0, double *Ns, double ds, double ***k_vector, double *chi, double *dxyz, double **chiMatrix, double ****h){
 
   
  
-  int     maxIter=500; 
+  int     maxIter=100; 
   int     msg=1;
   int     i,j,k,iter,chain,ii,jj; 
   double  currentfE, oldfE, deltafE,oldfE_iter; 
@@ -57,7 +57,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
 
       QAB=ConcAB(phi,w,Ns,ds,k_vector,dxyz);
 
-      Incomp(eta,phi,delphi);
+      Incomp(eta,PHI_0,phi,delphi);
     
       // Initializing newW
       for(i=0;i<Nx;i++){
@@ -120,7 +120,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
 	}
       }
   
-      SaveData(phi,w,dxyz);
+      SaveData(phi,PHI_0,w,dxyz);
 
     }while((deltaW>precision)||(iter<maxIter));
   
