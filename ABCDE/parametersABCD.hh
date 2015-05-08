@@ -2,7 +2,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   
   int i,j,k;
   int Ds;
-  double surface=0.025; // turn on=1 or off=0 the surface interactions
+  double surface=1.0; // turn on=1 or off=0 the surface interactions
   double xAB;
 
 
@@ -47,11 +47,18 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
 
   // Setting the generic chi parameters
   xAB=(0.14)*Ds;
- 
+
+  /*
   h_AAir=surface*(0.08)*Ds;
   h_BAir=surface*(xBAir)*Ds; // This is a variable
   h_ASub=surface*(0.08)*Ds;
   h_BSub=surface*(0.06)*Ds;
+  */
+  // doing some test
+  h_AAir=surface*(0.0)*Ds;
+  h_BAir=surface*(xBAir)*Ds; // This is a variable
+  h_ASub=surface*(0.0)*Ds;
+  h_BSub=surface*(0.0)*Ds;
 
   // setting the global values:
   global_xAB=xAB;
