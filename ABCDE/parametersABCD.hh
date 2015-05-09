@@ -2,7 +2,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   
   int i,j,k;
   int Ds;
-  double surface=0.25; // turn on=1 or off=0 the surface interactions
+  double surface=0.0; // turn on=1 or off=0 the surface interactions
   double xAB;
 
 
@@ -52,8 +52,15 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   h_AAir=surface*(0.08)*Ds;
   h_BAir=surface*(xBAir)*Ds; // This is a variable
   h_ASub=surface*(0.08)*Ds;
-  h_BSub=surface*(0.06)*Ds;
+  h_BSub=surface*(-0.002)*Ds;
 
+  /* doing tests
+  h_AAir=surface*(0.08)*Ds;
+  h_BAir=surface*(xBAir)*Ds; // This is a variable
+  h_ASub=surface*(0.08)*Ds;
+  h_BSub=surface*(0.06)*Ds;
+  */
+  
   // setting the global values:
   global_xAB=xAB;
   global_xAAir=h_AAir;
@@ -108,7 +115,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   }
   // Defining the film thickness and the epsilon
   FilmThickness=Lz-dxyz[2];
-  epsilon=FilmThickness/15.0;
+  epsilon=1.5;
  
   f[0]=Ns[0]/Ds;  // fA1
   f[1]=Ns[1]/Ds;  // fA2
@@ -125,15 +132,15 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   //++++++++++++++++++++++++++++++++++++++++++++++++
 
   // Average Concentrations
-  pA1ave=f[0]; //A1
-  pA2ave=f[1]; //A2
-  pA3ave=f[2]; //A3
-  pA4ave=f[3]; //A4
+  pA1ave=(1.0-PHI_0_tot)*f[0]; //A1
+  pA2ave=(1.0-PHI_0_tot)*f[1]; //A2
+  pA3ave=(1.0-PHI_0_tot)*f[2]; //A3
+  pA4ave=(1.0-PHI_0_tot)*f[3]; //A4
 
-  pB1ave=f[4]; //B1
-  pB2ave=f[5]; //B2
-  pB3ave=f[6]; //B3
-  pB4ave=f[7]; //B4
+  pB1ave=(1.0-PHI_0_tot)*f[4]; //B1
+  pB2ave=(1.0-PHI_0_tot)*f[5]; //B2
+  pB3ave=(1.0-PHI_0_tot)*f[6]; //B3
+  pB4ave=(1.0-PHI_0_tot)*f[7]; //B4
 
   ds=1.0/Ds;
   
@@ -219,23 +226,23 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
       for(k=0;k<Nz;k++){
 	
 	if((k*dxyz[2]>=0.0)&&(k*dxyz[2]<=epsilon)){ // k=0 is the substrate surface
-	  h[0][i][j][k]=h_ASub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
-	  h[1][i][j][k]=h_ASub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
-	  h[2][i][j][k]=h_ASub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
-	  h[3][i][j][k]=h_ASub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
-	  h[4][i][j][k]=h_BSub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
-	  h[5][i][j][k]=h_BSub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
-	  h[6][i][j][k]=h_BSub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
-	  h[7][i][j][k]=h_BSub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[0][i][j][k]=h_BAir*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[1][i][j][k]=h_BAir*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[2][i][j][k]=h_BAir*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[3][i][j][k]=h_BAir*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[4][i][j][k]=h_BAir*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[5][i][j][k]=h_BAir*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[6][i][j][k]=h_BAir*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[7][i][j][k]=h_BAir*(1.0-cos(Pi*k*dxyz[2]/epsilon));
 	}else if((k*dxyz[2]>=(FilmThickness-epsilon))&&(k*dxyz[2]<=(FilmThickness+dxyz[2]))){ // k=Nz-1 is the air interface
-	  h[0][i][j][k]=h_AAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
-	  h[1][i][j][k]=h_AAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
-	  h[2][i][j][k]=h_AAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
-	  h[3][i][j][k]=h_AAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
-	  h[4][i][j][k]=h_BAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
-	  h[5][i][j][k]=h_BAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
-	  h[6][i][j][k]=h_BAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
-	  h[7][i][j][k]=h_BAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[0][i][j][k]=h_BSub*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[1][i][j][k]=h_BSub*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[2][i][j][k]=h_BSub*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[3][i][j][k]=h_BSub*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[4][i][j][k]=h_BSub*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[5][i][j][k]=h_BSub*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[6][i][j][k]=h_BSub*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[7][i][j][k]=h_BSub*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
 	}else{ // No surface interaction in bulk
 	  h[0][i][j][k]=0.0;
 	  h[1][i][j][k]=0.0;
@@ -300,3 +307,39 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
 
 };
+
+
+
+
+
+/*
+
+	if((k*dxyz[2]>=0.0)&&(k*dxyz[2]<=epsilon)){ // k=0 is the substrate surface
+	  h[0][i][j][k]=h_ASub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[1][i][j][k]=h_ASub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[2][i][j][k]=h_ASub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[3][i][j][k]=h_ASub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[4][i][j][k]=h_BSub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[5][i][j][k]=h_BSub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[6][i][j][k]=h_BSub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	  h[7][i][j][k]=h_BSub*(1.0-cos(Pi*k*dxyz[2]/epsilon));
+	}else if((k*dxyz[2]>=(FilmThickness-epsilon))&&(k*dxyz[2]<=(FilmThickness+dxyz[2]))){ // k=Nz-1 is the air interface
+	  h[0][i][j][k]=h_AAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[1][i][j][k]=h_AAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[2][i][j][k]=h_AAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[3][i][j][k]=h_AAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[4][i][j][k]=h_BAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[5][i][j][k]=h_BAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[6][i][j][k]=h_BAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	  h[7][i][j][k]=h_BAir*(1.0-cos(Pi*(FilmThickness-k*dxyz[2])/epsilon));
+	}else{ // No surface interaction in bulk
+	  h[0][i][j][k]=0.0;
+	  h[1][i][j][k]=0.0;
+	  h[2][i][j][k]=0.0;
+	  h[3][i][j][k]=0.0;
+	  h[4][i][j][k]=0.0;
+	  h[5][i][j][k]=0.0;
+	  h[6][i][j][k]=0.0;
+	  h[7][i][j][k]=0.0;
+	}
+*/

@@ -33,17 +33,18 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double ***PHI_0, do
 
   oldfE=1.0e2;
   std::ofstream outputFile("./RESULTS/fE.dat");
+  
   do{
    
     WaveVectors(k_vector,dxyz);
     currentfE=0.0;
     deltafE=0.0;
   
-    epsilon=0.05;
-    gamma=0.05;
+    epsilon=0.05; // delta phi
+    gamma=0.05; //delta W
   
     iter=0;  
-    
+    std::ofstream outputFile2("./RESULTS/Run.dat");
     do{
       
       iter++;
@@ -82,7 +83,14 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double ***PHI_0, do
 
 	      }
 
-	      newW[ii][i][j][k]+=h[ii][i][j][k]+eta[i][j][k];
+	      if(ii==0){newW[ii][i][j][k]+=-h[ii][i][j][k]+eta[i][j][k];}
+	      if(ii==1){newW[ii][i][j][k]+=-h[ii][i][j][k]+eta[i][j][k];}
+	      if(ii==2){newW[ii][i][j][k]+=-h[ii][i][j][k]+eta[i][j][k];}
+	      if(ii==3){newW[ii][i][j][k]+=-h[ii][i][j][k]+eta[i][j][k];}
+	      if(ii==4){newW[ii][i][j][k]+=h[ii][i][j][k]+eta[i][j][k];}
+	      if(ii==5){newW[ii][i][j][k]+=h[ii][i][j][k]+eta[i][j][k];}
+	      if(ii==6){newW[ii][i][j][k]+=h[ii][i][j][k]+eta[i][j][k];}
+	      if(ii==7){newW[ii][i][j][k]+=h[ii][i][j][k]+eta[i][j][k];}
 
 	      fEW+=(newW[ii][i][j][k]*phi[ii][i][j][k]*dxyz[0]*dxyz[1]*dxyz[2]);
 	      fEsurf+=phi[ii][i][j][k]*h[ii][i][j][k]*dxyz[0]*dxyz[1]*dxyz[2];
@@ -99,7 +107,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double ***PHI_0, do
       fEW/=(((Nx*dxyz[0])*(Ny*dxyz[1])*(Nz*dxyz[2])));
       fEsurf/=(((Nx*dxyz[0])*(Ny*dxyz[1])*(Nz*dxyz[2])));
 
-      fES=log(QAB);   
+      fES=(1.0-PHI_0_tot)*log(QAB);   
       fE_homo=homogenousfE(chiMatrix);
 
       currentfE=-fES-fEW+fEchi+fEsurf;
@@ -107,6 +115,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double ***PHI_0, do
       deltafE=fabs(currentfE-oldfE_iter);
 
       std::cout<<"Iter="<<iter<<"  fE="<<currentfE<<"  delW=" <<deltaW<<"  delfE="<<currentfE-fE_homo<<std::endl;
+      outputFile2<<iter<<"  "<<currentfE<<"  " <<deltaW<<"  "<<currentfE-fE_homo<<std::endl;
       oldfE_iter=currentfE;
 
       // Updating the new W-field
@@ -139,6 +148,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double ***PHI_0, do
       msg=0;
     }
     
+    outputFile2.close();
   }while(msg==1);
 
   // Setting the global free energies
@@ -148,6 +158,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double ***PHI_0, do
   
   outputFile <<"Done"<<std::endl;
   outputFile.close();
+  
 
   
   destroy_3d_double_array(delphi);

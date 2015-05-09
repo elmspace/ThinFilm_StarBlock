@@ -21,7 +21,7 @@ void set_PHI_0(double ***PHI_0,double *dxyz){
     }
   }
   PHI_0_tot/=((dxyz[0]*Nx)*(dxyz[1]*Ny)*(dxyz[2]*Nz));
-  PHI_0_tot=1.0-PHI_0_tot;
+  PHI_0_tot=(1.0-PHI_0_tot);
   
   
 };
