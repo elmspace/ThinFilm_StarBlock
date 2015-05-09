@@ -57,10 +57,10 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   chi[0]=xAB;    
   //++++++++++++++++++++++++++++++++++++++++++++++++
   
-  h_AAir=0.0*surface*(0.08)*Ds;
+  h_AAir=surface*(0.08)*Ds;
   h_BAir=surface*(xBAir)*Ds; // This is a variable
-  h_ASub=0.0*surface*(0.08)*Ds;
-  h_BSub=0.0*surface*(0.06)*Ds;
+  h_ASub=surface*(0.08)*Ds;
+  h_BSub=surface*(0.06)*Ds;
   
   // setting the global values:
   global_xAB=xAB;
