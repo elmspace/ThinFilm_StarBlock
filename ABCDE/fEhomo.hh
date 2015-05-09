@@ -16,6 +16,9 @@ double homogenousfE(double **chiMatrix){
   avphi[6]=pB3ave; // B3 average
   avphi[7]=pB4ave; // B4 average
 
+  avphi[8]=pAirAve; // HA
+  avphi[9]=pSubAve; // HS
+
   fE_homo=0.0;
 
   for(i=0;i<ChainType;i++){

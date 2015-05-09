@@ -5,7 +5,7 @@ double FreeEnergy_Box_Edition(double ****w_temp, double ****phi, double ***eta, 
  
   int     i,j,k,chain,ii,jj; 
   double  precision=1.0e-3; 
-  double  QAB; 
+  double  QAB,QHA,QHS; 
   double  fES; 
 
   WaveVectors(k_vector,dxyz_temp);
@@ -14,8 +14,10 @@ double FreeEnergy_Box_Edition(double ****w_temp, double ****phi, double ***eta, 
   fES=0.0;
   
   QAB=ConcAB(phi,w_temp,Ns,ds,k_vector,dxyz_temp);
+  QHA=ConcHA(phi,w_temp,Ns,ds,k_vector,dxyz_temp);
+  QHS=ConcHS(phi,w_temp,Ns,ds,k_vector,dxyz_temp);
   
-  fES=log(QAB);
+  fES=(pMultiAve)*log(QAB)+(pAirAve/kappa_HA)*log(QHA)+(pSubAve/kappa_HS)*log(QHS); 
   currentfE=-fES;
   
   return currentfE;

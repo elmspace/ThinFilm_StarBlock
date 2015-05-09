@@ -21,7 +21,7 @@ using namespace std;
 #define Ny 20
 #define Nz 20
 
-#define ChainType 8
+#define ChainType 10
 #define Pi 3.14159
 
 // Trigger parameters
@@ -41,8 +41,6 @@ double Hex_Period;
 double BCC_Period;
 
 double FilmThickness;
-double PHI_0_tot;
-double epsilon; // This is for the thin-film geometry
 
 double xBAir;
 int Numb_of_Arms;
@@ -56,6 +54,8 @@ double *input_q, *transformed_q, *final_q;
 // Other parameters
 double h_AAir, h_BAir, h_ASub, h_BSub;
 double Lx, Ly, Lz;
+double pMultiAve , pAirAve, pSubAve;
+double kappa_HA, kappa_HS;
 double pA1ave, pA2ave, pA3ave, pA4ave, pB1ave, pB2ave,pB3ave, pB4ave;
 
 

@@ -1,4 +1,4 @@
-void FreeEnergy(double ****w, double ****phi, double ***eta, double ***PHI_0, double *Ns, double ds, double ***k_vector, double *chi, double *dxyz, double **chiMatrix, double ****h){
+void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double ds, double ***k_vector, double *chi, double *dxyz, double **chiMatrix, double ****h){
 
   
  
@@ -7,7 +7,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double ***PHI_0, do
   int     i,j,k,iter,chain,ii,jj; 
   double  currentfE, oldfE, deltafE,oldfE_iter; 
   double  precision=1.0e-2; 
-  double  QAB; 
+  double  QAB,QHA,QHS; 
   double  fEW, fEchi, fES, fEsurf; 
   double  epsilon, gamma;
   double  ***delphi;
@@ -30,6 +30,8 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double ***PHI_0, do
   avphi[5]=pB2ave; // B2 average
   avphi[6]=pB3ave; // B3 average
   avphi[7]=pB4ave; // B4 average
+  avphi[8]=pAirAve; // Hom Air
+  avphi[9]=pSubAve; // Hom sub
 
   oldfE=1.0e2;
   std::ofstream outputFile("./RESULTS/fE.dat");
@@ -57,8 +59,10 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double ***PHI_0, do
       deltaW=0.0;
 
       QAB=ConcAB(phi,w,Ns,ds,k_vector,dxyz);
+      QHA=ConcHA(phi,w,Ns,ds,k_vector,dxyz);
+      QHS=ConcHS(phi,w,Ns,ds,k_vector,dxyz);
 
-      Incomp(eta,PHI_0,phi,delphi);
+      Incomp(eta,phi,delphi);
     
       // Initializing newW
       for(i=0;i<Nx;i++){
@@ -83,14 +87,10 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double ***PHI_0, do
 
 	      }
 
-	      if(ii==0){newW[ii][i][j][k]+=-h[ii][i][j][k]+eta[i][j][k];}
-	      if(ii==1){newW[ii][i][j][k]+=-h[ii][i][j][k]+eta[i][j][k];}
-	      if(ii==2){newW[ii][i][j][k]+=-h[ii][i][j][k]+eta[i][j][k];}
-	      if(ii==3){newW[ii][i][j][k]+=-h[ii][i][j][k]+eta[i][j][k];}
-	      if(ii==4){newW[ii][i][j][k]+=h[ii][i][j][k]+eta[i][j][k];}
-	      if(ii==5){newW[ii][i][j][k]+=h[ii][i][j][k]+eta[i][j][k];}
-	      if(ii==6){newW[ii][i][j][k]+=h[ii][i][j][k]+eta[i][j][k];}
-	      if(ii==7){newW[ii][i][j][k]+=h[ii][i][j][k]+eta[i][j][k];}
+	      newW[ii][i][j][k]+=eta[i][j][k];
+	      
+	      if(ii==8){newW[ii][i][j][k]+=h[ii][i][j][k];}
+	      if(ii==9){newW[ii][i][j][k]+=h[ii][i][j][k];}
 
 	      fEW+=(newW[ii][i][j][k]*phi[ii][i][j][k]*dxyz[0]*dxyz[1]*dxyz[2]);
 	      fEsurf+=phi[ii][i][j][k]*h[ii][i][j][k]*dxyz[0]*dxyz[1]*dxyz[2];
@@ -107,7 +107,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double ***PHI_0, do
       fEW/=(((Nx*dxyz[0])*(Ny*dxyz[1])*(Nz*dxyz[2])));
       fEsurf/=(((Nx*dxyz[0])*(Ny*dxyz[1])*(Nz*dxyz[2])));
 
-      fES=(1.0-PHI_0_tot)*log(QAB);   
+      fES=(pMultiAve)*log(QAB)+(pAirAve/kappa_HA)*log(QHA)+(pSubAve/kappa_HS)*log(QHS);   
       fE_homo=homogenousfE(chiMatrix);
 
       currentfE=-fES-fEW+fEchi+fEsurf;
@@ -129,7 +129,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double ***PHI_0, do
 	}
       }
   
-      SaveData(phi,PHI_0,w,dxyz);
+      SaveData(phi,w,dxyz);
 
     }while((deltaW>precision)||(iter<maxIter));
   

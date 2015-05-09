@@ -224,14 +224,14 @@ double ConcAB(double ****phi,double ****w,double *Ns,double ds,double ***k_vecto
 	  }
 	}
 
-	phi[0][i][j][l]*=((1.0-PHI_0_tot)/Q);
-	phi[1][i][j][l]*=((1.0-PHI_0_tot)/Q);
-	phi[2][i][j][l]*=((1.0-PHI_0_tot)/Q);
-	phi[3][i][j][l]*=((1.0-PHI_0_tot)/Q);
-	phi[4][i][j][l]*=((1.0-PHI_0_tot)/Q);
-	phi[5][i][j][l]*=((1.0-PHI_0_tot)/Q);
-	phi[6][i][j][l]*=((1.0-PHI_0_tot)/Q);
-	phi[7][i][j][l]*=((1.0-PHI_0_tot)/Q);
+	phi[0][i][j][l]*=(pMultiAve/Q);
+	phi[1][i][j][l]*=(pMultiAve/Q);
+	phi[2][i][j][l]*=(pMultiAve/Q);
+	phi[3][i][j][l]*=(pMultiAve/Q);
+	phi[4][i][j][l]*=(pMultiAve/Q);
+	phi[5][i][j][l]*=(pMultiAve/Q);
+	phi[6][i][j][l]*=(pMultiAve/Q);
+	phi[7][i][j][l]*=(pMultiAve/Q);
 
       }
     }

@@ -1,4 +1,4 @@
-void Incomp(double ***eta, double ***PHI_0, double ****phi, double ***delphi){
+void Incomp(double ***eta, double ****phi, double ***delphi){
 
   int     i,j,k;
   int     chain; 
@@ -17,8 +17,8 @@ void Incomp(double ***eta, double ***PHI_0, double ****phi, double ***delphi){
 	  ptot+=phi[chain][i][j][k];
 	}
 
-	delphi[i][j][k]=PHI_0[i][j][k]-ptot;
-	eta[i][j][k]-=10.0*delphi[i][j][k];
+	delphi[i][j][k]=1.0-ptot;
+	eta[i][j][k]-=delphi[i][j][k];
 
       }
     }
