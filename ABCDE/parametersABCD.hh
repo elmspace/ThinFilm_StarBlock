@@ -2,14 +2,14 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   
   int i,j,k;
   int Ds;
-  double surface=1.0; // turn on=1 or off=0 the surface interactions
+  double surface=0.0; // turn on=1 or off=0 the surface interactions
   double xAB;
   double chi_HA=-100.0;
   double chi_HS=-100.0;
   
-  pMultiAve=0.9;
-  pAirAve=0.05;
-  pSubAve=0.05;
+  pMultiAve=0.85;
+  pAirAve=0.075;
+  pSubAve=0.075;
   
   if(Bulk_Calc==1){
     Numb_of_Periods=1.0;
@@ -29,8 +29,8 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     box_min_xy_relax=0;
     box_min_xyz_relax=1;
   }else{
-    box_min_xy_relax=1;
-    box_min_xyz_relax=0;
+    box_min_xy_relax=0; //flip these two when done
+    box_min_xyz_relax=1;
   }
 
   Ns[8]=50;
