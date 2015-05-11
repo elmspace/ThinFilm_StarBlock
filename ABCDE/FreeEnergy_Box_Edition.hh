@@ -17,7 +17,9 @@ double FreeEnergy_Box_Edition(double ****w_temp, double ****phi, double ***eta, 
   QHA=ConcHA(phi,w_temp,Ns,ds,k_vector,dxyz_temp);
   QHS=ConcHS(phi,w_temp,Ns,ds,k_vector,dxyz_temp);
   
-  fES=(pMultiAve)*log(QAB)+(pAirAve/kappa_HA)*log(QHA)+(pSubAve/kappa_HS)*log(QHS); 
+  //fES=(pMultiAve)*log(QAB)+(pAirAve/kappa_HA)*log(QHA)+(pSubAve/kappa_HS)*log(QHS); // This includes the Air and Substrate Homopolymers
+  // I think this is the fES we want, for the film alone.
+  fES=(pMultiAve)*log(QAB); 
   currentfE=-fES;
   
   return currentfE;

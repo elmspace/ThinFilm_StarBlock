@@ -69,8 +69,6 @@ int main(int argc, char* argv[]){
   forward_plan=fftw_plan_r2r_3d(Nx,Ny,Nz,input_q,transformed_q,FFTW_REDFT10,FFTW_REDFT10,FFTW_REDFT10,FFTW_PRESERVE_INPUT);
   inverse_plan=fftw_plan_r2r_3d(Nx,Ny,Nz,transformed_q,final_q,FFTW_REDFT01,FFTW_REDFT01,FFTW_REDFT01,FFTW_PRESERVE_INPUT);
 
-
-
   pass_or_fail=Set_ReadIn_Parameters(argc,argv);
 
   if(pass_or_fail==0){ // good to go

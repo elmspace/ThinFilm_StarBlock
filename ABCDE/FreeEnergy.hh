@@ -35,15 +35,15 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
 
   oldfE=1.0e2;
   std::ofstream outputFile("./RESULTS/fE.dat");
-  
+
   do{
    
     WaveVectors(k_vector,dxyz);
     currentfE=0.0;
     deltafE=0.0;
   
-    epsilon=0.05; // delta phi
-    gamma=0.05; //delta W
+    epsilon=0.025; // delta phi
+    gamma=0.025; //delta W
   
     iter=0;  
     std::ofstream outputFile2("./RESULTS/Run.dat");
@@ -92,7 +92,13 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
 	      if(ii==8){newW[ii][i][j][k]+=h[ii][i][j][k];}
 	      if(ii==9){newW[ii][i][j][k]+=h[ii][i][j][k];}
 
-	      fEW+=(newW[ii][i][j][k]*phi[ii][i][j][k]*dxyz[0]*dxyz[1]*dxyz[2]);
+	      if((ii==0)||(ii==1)||(ii==2)||(ii==3)||(ii==4)||(ii==5)||(ii==6)||(ii==7)){
+		fEW+=(newW[ii][i][j][k]*phi[ii][i][j][k]*dxyz[0]*dxyz[1]*dxyz[2]);
+	      }else{
+		fEW+=0.0;
+	      }
+
+	      
 	      fEsurf+=phi[ii][i][j][k]*h[ii][i][j][k]*dxyz[0]*dxyz[1]*dxyz[2];
 	      delW[ii][i][j][k]=newW[ii][i][j][k]-w[ii][i][j][k];
 	      deltaW+=fabs(delW[ii][i][j][k]);
@@ -107,14 +113,15 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
       fEW/=(((Nx*dxyz[0])*(Ny*dxyz[1])*(Nz*dxyz[2])));
       fEsurf/=(((Nx*dxyz[0])*(Ny*dxyz[1])*(Nz*dxyz[2])));
 
-      fES=(pMultiAve)*log(QAB)+(pAirAve/kappa_HA)*log(QHA)+(pSubAve/kappa_HS)*log(QHS);   
+      //fES=(pMultiAve)*log(QAB)+(pAirAve/kappa_HA)*log(QHA)+(pSubAve/kappa_HS)*log(QHS);
+      fES=(pMultiAve)*log(QAB);
       fE_homo=homogenousfE(chiMatrix);
 
-      currentfE=-fES-fEW+fEchi+fEsurf;
+      currentfE=-fES-fEW+fEchi;
       
       deltafE=fabs(currentfE-oldfE_iter);
 
-      std::cout<<"Iter="<<iter<<"  fE="<<currentfE<<"  delW=" <<deltaW<<"  delfE="<<currentfE-fE_homo<<std::endl;
+      //std::cout<<"Iter="<<iter<<"  fE="<<currentfE<<"  delW=" <<deltaW<<"  delfE="<<currentfE-fE_homo<<std::endl;
       outputFile2<<iter<<"  "<<currentfE<<"  " <<deltaW<<"  "<<currentfE-fE_homo<<std::endl;
       oldfE_iter=currentfE;
 
@@ -138,7 +145,9 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
     if(box_min_xy_relax==1){size_adjust_2D_xy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);}
     if(box_min_xyz_relax==1){size_adjust(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);}
 
-    if((oldfE<currentfE)||((abs(oldfE)-abs(currentfE))<1.0e-6)){
+    std::cout<<"old_fE="<<oldfE<<" currentfE="<<currentfE<<" deltafE="<<(abs(oldfE)-abs(currentfE))<<std::endl;
+    
+    if((oldfE<currentfE)||((abs(oldfE-currentfE))<1.0e-4)){
       msg=0;
     }
     if(msg==1){
@@ -154,6 +163,9 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
   // Setting the global free energies
   global_fE=oldfE; // because the old must have been smaller for the loop to have ended.
   flobal_HomfE=fE_homo;
+  global_dx=dxyz[0];
+  global_dy=dxyz[1];
+  global_dz=dxyz[2];
 
   
   outputFile <<"Done"<<std::endl;

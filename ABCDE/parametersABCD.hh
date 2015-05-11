@@ -2,20 +2,27 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   
   int i,j,k;
   int Ds;
-  double surface=0.0; // turn on=1 or off=0 the surface interactions
+  double surface; // turn on=1 or off=0 the surface interactions
   double xAB;
-  double chi_HA=-100.0;
-  double chi_HS=-100.0;
-  
-  pMultiAve=0.85;
-  pAirAve=0.075;
-  pSubAve=0.075;
+  double chi_HA;
+  double chi_HS;
   
   if(Bulk_Calc==1){
     Numb_of_Periods=1.0;
     surface=0.0;
+    pMultiAve=1.0;
+    pAirAve=0.0;
+    pSubAve=0.0;
+    chi_HA=0.0;
+    chi_HS=0.0;
   }else{
     Numb_of_Periods=3.0;
+    pMultiAve=0.85;
+    pAirAve=0.075;
+    pSubAve=0.075;
+    surface=1.0;
+    chi_HA=-100.0;
+    chi_HS=-100.0;
   }
   
   // 0 read
@@ -29,8 +36,8 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     box_min_xy_relax=0;
     box_min_xyz_relax=1;
   }else{
-    box_min_xy_relax=0; //flip these two when done
-    box_min_xyz_relax=1;
+    box_min_xy_relax=1;
+    box_min_xyz_relax=0;
   }
 
   Ns[8]=50;
@@ -53,7 +60,6 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
 
   // Setting the generic chi parameters
   xAB=(0.14)*Ds;
-  // Setting up the xAB
   chi[0]=xAB;    
   //++++++++++++++++++++++++++++++++++++++++++++++++
   
@@ -90,7 +96,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     if(LAM==1){
       Lx=2.0*Lam_Period;
       Ly=2.0*Lam_Period;
-      Lz=Numb_of_Periods*Lam_Period;
+      Lz=Numb_of_Periods*(Lam_Period+1.0*(Lam_Period*Numb_of_Periods/Nz)); // This adjusts for the fact that we have HA and HS
     }else if(HEX==1){
       if(VER==1){
 	Lx=Hex_Period;
@@ -99,7 +105,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
       }else{
 	Lx=Hex_Period*sqrt(3.0);
 	Ly=Hex_Period;
-	Lz=Numb_of_Periods*Hex_Period;
+	Lz=Numb_of_Periods*(Hex_Period+1.0*(Hex_Period*Numb_of_Periods/Nz)); // This adjusts for the fact that we have HA and HS
       }
     }else{
       std::cout<<"You have not chosen a phase yet."<<std::endl;
