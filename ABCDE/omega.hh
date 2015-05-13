@@ -19,9 +19,11 @@ void omega(double ****w){
 	if(LAM==1){
 	  if(HOR==1){infile.open("./OMEGA/READ/Omega_LAM_20_20_20_HOR.read");}
 	  if(VER==1){infile.open("./OMEGA/READ/Omega_LAM_20_20_20_VER.read");}
+	  if(VER_2==1){infile.open("./OMEGA/READ/Omega_LAM_20_20_20_VER_2.read");}
 	}else if(HEX==1){
 	  if(HOR==1){infile.open("./OMEGA/READ/Omega_HEX_20_20_20_HOR.read");}
 	  if(VER==1){infile.open("./OMEGA/READ/Omega_HEX_20_20_20_VER.read");}
+	  if(VER_2==1){infile.open("./OMEGA/READ/Omega_HEX_20_20_20_VER_2.read");}
 	}
       }
 	

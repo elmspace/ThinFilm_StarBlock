@@ -98,7 +98,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
       Ly=2.0*Lam_Period;
       Lz=Numb_of_Periods*(Lam_Period+1.0*(Lam_Period*Numb_of_Periods/Nz)); // This adjusts for the fact that we have HA and HS
     }else if(HEX==1){
-      if(VER==1){
+      if((VER==1)||(VER_2==1)){
 	Lx=Hex_Period;
 	Ly=Hex_Period*sqrt(3.0);
 	Lz=Numb_of_Periods*Hex_Period;

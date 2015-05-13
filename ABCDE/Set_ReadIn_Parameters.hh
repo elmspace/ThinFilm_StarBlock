@@ -35,9 +35,15 @@ int Set_ReadIn_Parameters(int numb_of_arg, char* arg_input[]){
     if(strcmp( arg_input[3], "Ver") == 0){
       HOR=0;
       VER=1;
+      VER_2=0;
     }else if(strcmp( arg_input[3], "Hor") == 0){
       HOR=1;
       VER=0;
+      VER_2=0;
+    }else if(strcmp( arg_input[3], "Ver_2") == 0){
+      HOR=0;
+      VER=0;
+      VER_2=1;
     }else{
       std::cout<<"Something wrong with: Direction!"<<std::endl;
       pass_or_fail=1;
