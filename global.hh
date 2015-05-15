@@ -1,5 +1,5 @@
-#include </usr/local/include/fftw3.h>  // This is for My Mac Pro
-//#include </opt/sharcnet/fftw/3.3.2/intel/include/fftw3.h> // This is for Sharcnet
+//#include </usr/local/include/fftw3.h>  // This is for My Mac Pro
+#include </opt/sharcnet/fftw/3.3.2/intel/include/fftw3.h> // This is for Sharcnet
 //#include </usr/include/fftw3.h> // This is for use on Landua
 //#include </usr/local/include/fftw3.h> // This is for elmspace2
 
@@ -30,7 +30,7 @@ int box_min;
 int box_min_xy_relax;
 int box_min_xyz_relax;
 int LAM, HEX, BCC;
-int HOR, VER;
+int HOR, VER, VER_2;
 int Bulk_Calc;
 
 int Round; // This is used to check the loop condition (because I want to use previous results for Round>1)
