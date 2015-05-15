@@ -63,10 +63,10 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   chi[0]=xAB;    
   //++++++++++++++++++++++++++++++++++++++++++++++++
   
-  h_AAir=surface*(0.08)*Ds;
+  h_AAir=surface*(0.0)*Ds;
   h_BAir=surface*(xBAir)*Ds; // This is a variable
-  h_ASub=surface*(0.08)*Ds;
-  h_BSub=surface*(0.06)*Ds;
+  h_ASub=surface*(0.0)*Ds;
+  h_BSub=surface*(0.0)*Ds;
   
   // setting the global values:
   global_xAB=xAB;
@@ -96,16 +96,16 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     if(LAM==1){
       Lx=2.0*Lam_Period;
       Ly=2.0*Lam_Period;
-      Lz=Numb_of_Periods*(Lam_Period+1.0*(Lam_Period*Numb_of_Periods/Nz)); // This adjusts for the fact that we have HA and HS
+      Lz=Numb_of_Periods*(Lam_Period+3.0*(Lam_Period*Numb_of_Periods/Nz)); // This adjusts for the fact that we have HA and HS
     }else if(HEX==1){
       if(VER==1){
 	Lx=Hex_Period;
 	Ly=Hex_Period*sqrt(3.0);
-	Lz=Numb_of_Periods*Hex_Period;
+	Lz=Numb_of_Periods*(Hex_Period+3.0*(Hex_Period*Numb_of_Periods/Nz));// This adjusts for the fact that we have HA and HS
       }else{
 	Lx=Hex_Period*sqrt(3.0);
 	Ly=Hex_Period;
-	Lz=Numb_of_Periods*(Hex_Period+1.0*(Hex_Period*Numb_of_Periods/Nz)); // This adjusts for the fact that we have HA and HS
+	Lz=Numb_of_Periods*(Hex_Period+3.0*(Hex_Period*Numb_of_Periods/Nz)); // This adjusts for the fact that we have HA and HS
       }
     }else{
       std::cout<<"You have not chosen a phase yet."<<std::endl;
@@ -270,7 +270,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     for(j=0;j<Ny;j++){
       for(k=0;k<Nz;k++){
 	
-	if((k==0)||(k==1)){ // k=0 is the substrate surface
+	if(k==0){ // k=0 is the substrate surface
 	  h[0][i][j][k]=0.0;
 	  h[1][i][j][k]=0.0;
 	  h[2][i][j][k]=0.0;
@@ -281,7 +281,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
 	  h[7][i][j][k]=0.0;
 	  h[8][i][j][k]=0.0;
 	  h[9][i][j][k]=chi_HS;
-	}else if((k==(Nz-1))||(k==(Nz-2))){ // k=Nz-1 is the air interface
+	}else if(k==(Nz-1)){ // k=Nz-1 is the air interface
 	  h[0][i][j][k]=0.0;
 	  h[1][i][j][k]=0.0;
 	  h[2][i][j][k]=0.0;
@@ -309,7 +309,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     }
   }
   // This is print out of the code parameters, You can un-comment it to check the vraiables.
-
+  /*
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
@@ -356,5 +356,5 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   std::cout<<" "<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
-
+  */
 };
