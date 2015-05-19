@@ -1,4 +1,4 @@
-double ConcAB(double ****phi,double ****w,double *Ns,double ds,double ***k_vector,double *dxyz){
+double ConcAB_4Arm(double ****phi,double ****w,double *Ns,double ds,double ***k_vector,double *dxyz){
 
   int         i,j,l,s;
   double      Q; 
@@ -224,14 +224,14 @@ double ConcAB(double ****phi,double ****w,double *Ns,double ds,double ***k_vecto
 	  }
 	}
 
-	phi[0][i][j][l]*=(pMultiAve/Q);
-	phi[1][i][j][l]*=(pMultiAve/Q);
-	phi[2][i][j][l]*=(pMultiAve/Q);
-	phi[3][i][j][l]*=(pMultiAve/Q);
-	phi[4][i][j][l]*=(pMultiAve/Q);
-	phi[5][i][j][l]*=(pMultiAve/Q);
-	phi[6][i][j][l]*=(pMultiAve/Q);
-	phi[7][i][j][l]*=(pMultiAve/Q);
+	phi[0][i][j][l]*=(pMultiAve/Q); //A1
+	phi[1][i][j][l]*=(pMultiAve/Q); //A2
+	phi[2][i][j][l]*=(pMultiAve/Q); //A3
+	phi[3][i][j][l]*=(pMultiAve/Q); //A4
+	phi[4][i][j][l]*=(pMultiAve/Q); //B1
+	phi[5][i][j][l]*=(pMultiAve/Q); //B2
+	phi[6][i][j][l]*=(pMultiAve/Q); //B3
+	phi[7][i][j][l]*=(pMultiAve/Q); //B4
 
       }
     }

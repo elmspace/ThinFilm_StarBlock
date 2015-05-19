@@ -42,8 +42,8 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
     currentfE=0.0;
     deltafE=0.0;
   
-    epsilon=0.025; // delta phi
-    gamma=0.025; //delta W
+    epsilon=0.05; // delta phi
+    gamma=0.05; //delta W
   
     iter=0;  
     std::ofstream outputFile2("./RESULTS/Run.dat");
@@ -58,7 +58,15 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
       fEsurf=0.0;
       deltaW=0.0;
 
-      QAB=ConcAB(phi,w,Ns,ds,k_vector,dxyz);
+      if(Numb_of_Arms==1){
+	QAB=ConcAB_1Arm(phi,w,Ns,ds,k_vector,dxyz);
+      }else if(Numb_of_Arms==2){
+	QAB=ConcAB_2Arm(phi,w,Ns,ds,k_vector,dxyz);
+      }else if(Numb_of_Arms==3){
+	QAB=ConcAB_3Arm(phi,w,Ns,ds,k_vector,dxyz);
+      }else if(Numb_of_Arms==4){
+	QAB=ConcAB_4Arm(phi,w,Ns,ds,k_vector,dxyz);
+      }
       QHA=ConcHA(phi,w,Ns,ds,k_vector,dxyz);
       QHS=ConcHS(phi,w,Ns,ds,k_vector,dxyz);
 
@@ -141,7 +149,8 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
     }while((deltaW>precision)||(iter<maxIter));
   
     outputFile <<currentfE<<" "<<fE_homo<<" "<<dxyz[0]*Nx<<" "<<dxyz[1]*Ny<<" "<<dxyz[2]*Nz<<std::endl;
-  
+
+    if(box_min_z_relax==1){size_adjust_1D_z(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);}
     if(box_min_xy_relax==1){size_adjust_2D_xy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);}
     if(box_min_xyz_relax==1){size_adjust(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);}
 

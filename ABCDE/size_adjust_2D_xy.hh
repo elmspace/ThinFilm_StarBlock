@@ -13,8 +13,8 @@ double size_adjust_2D_xy(double ****w, double ****phi, double ***eta, double *Ns
   box_fE=create_1d_double_array(8,"box_fE");
   dxyz_temp=create_1d_double_array(3,"dxyz_temp");
 
-  delx=0.1/Nx;
-  dely=0.1/Ny;
+  delx=0.05/Nx;
+  dely=0.05/Ny;
  
   // std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   l=0;
@@ -75,15 +75,15 @@ double size_adjust_2D_xy(double ****w, double ****phi, double ***eta, double *Ns
 
   //std::cout<<i<<std::endl;
   
-  
   box=1;
-  return box;
   
   destroy_1d_double_array(dxyz_temp);
   destroy_1d_double_array(box_x);
   destroy_1d_double_array(box_y);
   destroy_1d_double_array(box_fE);
   destroy_4d_double_array(w_temp);
+
+  return box;
   
 };
 

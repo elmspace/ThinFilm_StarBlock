@@ -2,6 +2,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   
   int i,j,k;
   int Ds;
+  int N_each_Arm=100;
   double surface; // turn on=1 or off=0 the surface interactions
   double xAB;
   double chi_HA;
@@ -34,26 +35,25 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   box_min=1;
   if(Bulk_Calc==1){
     box_min_xy_relax=0;
+    box_min_z_relax=0;
     box_min_xyz_relax=1;
   }else{
-    box_min_xy_relax=1;
-    box_min_xyz_relax=0;
+    box_min_xy_relax=0;
+    box_min_z_relax=1;
+    box_min_xyz_relax=0; 
   }
 
   Ns[8]=50;
   Ns[9]=50;
   // Degree of polymerization (Each arm of the star is 100)
   if(LAM==1){
-    Ns[0]=50;  // A1
+    Ns[0]=0.5*N_each_Arm;  // A1
   }else if(HEX==1){
-    Ns[0]=35;  // A1
+    Ns[0]=0.35*N_each_Arm;  // A1
   } else if(BCC==1){
-    Ns[0]=35;  // A1
-  }else{
-    std::cout<<"You have not chosen a phase yet."<<std::endl;
-    Ns[0]=50;  // A1 
+    Ns[0]=0.35*N_each_Arm;  // A1
   }
-  Arms(Numb_of_Arms,Ns);
+  Arms(Numb_of_Arms,Ns,N_each_Arm);
  
   // Total length
   Ds=Ns[0]+Ns[1]+Ns[2]+Ns[3]+Ns[4]+Ns[5]+Ns[6]+Ns[7];
@@ -96,16 +96,16 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     if(LAM==1){
       Lx=2.0*Lam_Period;
       Ly=2.0*Lam_Period;
-      Lz=Numb_of_Periods*(Lam_Period+3.0*(Lam_Period*Numb_of_Periods/Nz)); // This adjusts for the fact that we have HA and HS
+      Lz=Numb_of_Periods*Lam_Period;
     }else if(HEX==1){
       if((VER==1)||(VER_2==1)){
 	Lx=Hex_Period;
 	Ly=Hex_Period*sqrt(3.0);
-	Lz=Numb_of_Periods*(Hex_Period+3.0*(Hex_Period*Numb_of_Periods/Nz));// This adjusts for the fact that we have HA and HS
+	Lz=Numb_of_Periods*Hex_Period;
       }else{
 	Lx=Hex_Period*sqrt(3.0);
 	Ly=Hex_Period;
-	Lz=Numb_of_Periods*(Hex_Period+3.0*(Hex_Period*Numb_of_Periods/Nz)); // This adjusts for the fact that we have HA and HS
+	Lz=Numb_of_Periods*Hex_Period;
       }
     }else{
       std::cout<<"You have not chosen a phase yet."<<std::endl;
@@ -309,7 +309,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     }
   }
   // This is print out of the code parameters, You can un-comment it to check the vraiables.
-  /*
+
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
@@ -354,7 +354,19 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   std::cout<<"fB4="<<f[7]<<std::endl;
   std::cout<<"Total="<<f[0]+f[1]+f[2]+f[3]+f[4]+f[5]+f[6]+f[7]<<std::endl;
   std::cout<<" "<<std::endl;
+  std::cout<<" "<<std::endl;
+  std::cout<<" "<<std::endl;
+  std::cout<<"fA1="<<Ns[0]<<std::endl;
+  std::cout<<"fA2="<<Ns[1]<<std::endl;
+  std::cout<<"fA3="<<Ns[2]<<std::endl;
+  std::cout<<"fA4="<<Ns[3]<<std::endl;
+  std::cout<<"fB1="<<Ns[4]<<std::endl;
+  std::cout<<"fB2="<<Ns[5]<<std::endl;
+  std::cout<<"fB3="<<Ns[6]<<std::endl;
+  std::cout<<"fB4="<<Ns[7]<<std::endl;
+  std::cout<<"Total="<<Ns[0]+Ns[1]+Ns[2]+Ns[3]+Ns[4]+Ns[5]+Ns[6]+Ns[7]<<std::endl;
+  std::cout<<" "<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
-  */
+
 };

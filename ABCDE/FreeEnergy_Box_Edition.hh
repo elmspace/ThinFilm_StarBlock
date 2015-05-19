@@ -13,7 +13,15 @@ double FreeEnergy_Box_Edition(double ****w_temp, double ****phi, double ***eta, 
   currentfE=0.0;
   fES=0.0;
   
-  QAB=ConcAB(phi,w_temp,Ns,ds,k_vector,dxyz_temp);
+  if(Numb_of_Arms==1){
+    QAB=ConcAB_1Arm(phi,w_temp,Ns,ds,k_vector,dxyz_temp);
+  }else if(Numb_of_Arms==2){
+    QAB=ConcAB_2Arm(phi,w_temp,Ns,ds,k_vector,dxyz_temp);
+  }else if(Numb_of_Arms==3){
+    QAB=ConcAB_3Arm(phi,w_temp,Ns,ds,k_vector,dxyz_temp);
+  }else if(Numb_of_Arms==4){
+    QAB=ConcAB_4Arm(phi,w_temp,Ns,ds,k_vector,dxyz_temp);
+  }
   QHA=ConcHA(phi,w_temp,Ns,ds,k_vector,dxyz_temp);
   QHS=ConcHS(phi,w_temp,Ns,ds,k_vector,dxyz_temp);
   
