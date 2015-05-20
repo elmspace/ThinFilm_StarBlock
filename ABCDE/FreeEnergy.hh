@@ -129,7 +129,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
       
       deltafE=fabs(currentfE-oldfE_iter);
 
-      std::cout<<"Iter="<<iter<<"  fE="<<currentfE<<"  delW=" <<deltaW<<"  delfE="<<currentfE-fE_homo<<std::endl;
+      //std::cout<<"Iter="<<iter<<"  fE="<<currentfE<<"  delW=" <<deltaW<<"  delfE="<<currentfE-fE_homo<<std::endl;
       outputFile2<<iter<<"  "<<currentfE<<"  " <<deltaW<<"  "<<currentfE-fE_homo<<std::endl;
       oldfE_iter=currentfE;
 
@@ -150,7 +150,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
   
     outputFile <<currentfE<<" "<<fE_homo<<" "<<dxyz[0]*Nx<<" "<<dxyz[1]*Ny<<" "<<dxyz[2]*Nz<<std::endl;
 
-    if(box_min_z_relax==1){size_adjust_1D_z(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);}
+    //if(box_min_z_relax==1){size_adjust_1D_z(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);} // I have commented this out because of the testing section below
     if(box_min_xy_relax==1){size_adjust_2D_xy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);}
     if(box_min_xyz_relax==1){size_adjust(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);}
 
@@ -165,6 +165,14 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
     if(box_min==0){
       msg=0;
     }
+
+    // ************************************* Testing
+    // This is only for the testing and finding the min  in z direction, delete when done ******
+    if(box_min_z_relax==1){
+      dxyz[2]+=(0.1/Nz);
+      msg=1;
+    }
+    // *************************************
     
     outputFile2.close();
   }while(msg==1);

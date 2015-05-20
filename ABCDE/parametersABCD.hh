@@ -17,8 +17,8 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     chi_HA=0.0;
     chi_HS=0.0;
   }else{
-    Numb_of_Periods=3.0;
-    pMultiAve=0.95;
+    Numb_of_Periods=2.0;
+    pMultiAve=0.9;
     pAirAve=0.5*(1.0-pMultiAve);
     pSubAve=pAirAve;
     surface=1.0;
@@ -38,13 +38,13 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     box_min_z_relax=0;
     box_min_xyz_relax=1;
   }else{
-    box_min_xy_relax=1;
-    box_min_z_relax=0;
+    box_min_xy_relax=0;
+    box_min_z_relax=1;
     box_min_xyz_relax=0; 
   }
 
-  Ns[8]=50;
-  Ns[9]=50;
+  Ns[8]=10;
+  Ns[9]=10;
   // Degree of polymerization (Each arm of the star is 100)
   if(LAM==1){
     Ns[0]=0.5*N_each_Arm;  // A1
