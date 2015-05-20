@@ -11,7 +11,7 @@ double size_adjust_1D_z(double ****w, double ****phi, double ***eta, double *Ns,
   box_fE=create_1d_double_array(2,"box_fE");
   dxyz_temp=create_1d_double_array(3,"dxyz_temp");
 
-  delz=0.2/Nz;
+  delz=0.1/Nz;
   // std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   l=0;
   for(k=-1;k<2;k++){

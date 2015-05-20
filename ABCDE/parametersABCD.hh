@@ -38,8 +38,8 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     box_min_z_relax=0;
     box_min_xyz_relax=1;
   }else{
-    box_min_xy_relax=0;
-    box_min_z_relax=1;
+    box_min_xy_relax=1;
+    box_min_z_relax=0;
     box_min_xyz_relax=0; 
   }
 
@@ -309,7 +309,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     }
   }
   // This is print out of the code parameters, You can un-comment it to check the vraiables.
-
+  /*
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
@@ -368,5 +368,5 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   std::cout<<" "<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
-
+  */
 };

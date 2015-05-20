@@ -4,7 +4,7 @@ void Mod1(double ****w, double ****phi, double ***eta, double *Ns, double ds, do
   double max_xBAir=0.3;
 
   int do_1_calc=1; // if =1 this will just do one calculation, if =0 it will break and wont continue
-  Bulk_Calc=0; // Bulk_Calc=1 will do a 1period system in bulk
+  Bulk_Calc=1; // Bulk_Calc=1 will do a 1period system in bulk
 
   
   // Cleaning the .dat file
