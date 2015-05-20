@@ -18,18 +18,18 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     chi_HS=0.0;
   }else{
     Numb_of_Periods=3.0;
-    pMultiAve=0.85;
-    pAirAve=0.075;
-    pSubAve=0.075;
+    pMultiAve=0.95;
+    pAirAve=0.5*(1.0-pMultiAve);
+    pSubAve=pAirAve;
     surface=1.0;
-    chi_HA=-100.0;
-    chi_HS=-100.0;
+    chi_HA=-1000.0;
+    chi_HS=-1000.0;
   }
   
   // 0 read
   // 1 make 
   // 2 random     
-  Iomega=0;
+  Iomega=1;
 
   // Minimize with respect to box size (yes=1, No=0)
   box_min=1;
@@ -78,9 +78,9 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
 
   if(Bulk_Calc==1){
     if(LAM==1){
-      Lx=Lam_Period;
-      Ly=Lam_Period;
-      Lz=Lam_Period;
+      Lx=Lam_Period*Numb_of_Periods;
+      Ly=Lam_Period*Numb_of_Periods;
+      Lz=Lam_Period*Numb_of_Periods;
     }else if(HEX==1){
       Lx=Hex_Period;
       Ly=Hex_Period*sqrt(3.0);
@@ -94,18 +94,18 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     }
   }else{
     if(LAM==1){
-      Lx=2.0*Lam_Period;
-      Ly=2.0*Lam_Period;
-      Lz=Numb_of_Periods*Lam_Period;
+      Lx=Numb_of_Periods*Lam_Period;
+      Ly=Numb_of_Periods*Lam_Period;
+      Lz=Numb_of_Periods*(Lam_Period+(2.0*(Numb_of_Periods*Lam_Period/Nz)));
     }else if(HEX==1){
       if((VER==1)||(VER_2==1)){
 	Lx=Hex_Period;
 	Ly=Hex_Period*sqrt(3.0);
-	Lz=Numb_of_Periods*Hex_Period;
+	Lz=Numb_of_Periods*(Hex_Period+(2.0*(Numb_of_Periods*Hex_Period/Nz)));
       }else{
 	Lx=Hex_Period*sqrt(3.0);
 	Ly=Hex_Period;
-	Lz=Numb_of_Periods*Hex_Period;
+	Lz=Numb_of_Periods*(Hex_Period+(2.0*(Numb_of_Periods*Hex_Period/Nz)));
       }
     }else{
       std::cout<<"You have not chosen a phase yet."<<std::endl;

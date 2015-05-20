@@ -10,9 +10,9 @@ void Arms(int Numb_of_Arms, double *Ns, int N_each_Arm){
     Ns[6]=0;  // B3              
     Ns[7]=0;  // B4 
     // Setting the size of the period for the system
-    Lam_Period=3.45; //xAB 14
-    Hex_Period=3.75; //xAB 14
-    BCC_Period=4.60; //xAB 14
+    Lam_Period=3.7; //xAB 14 3.45
+    Hex_Period=3.9; //xAB 14 3.75
+    BCC_Period=4.6; //xAB 14
 
     //Lam_Period=3.83; //xAB 20
     //Hex_Period=3.78; //xAB 20
