@@ -7,29 +7,25 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   double xAB;
   double chi_HA;
   double chi_HS;
-  
+
+  epsilon=0.5;
+
   if(Bulk_Calc==1){
     Numb_of_Periods=1.0;
     surface=0.0;
-    pMultiAve=1.0;
-    pAirAve=0.0;
-    pSubAve=0.0;
     chi_HA=0.0;
     chi_HS=0.0;
   }else{
     Numb_of_Periods=2.0;
-    pMultiAve=0.9;
-    pAirAve=0.5*(1.0-pMultiAve);
-    pSubAve=pAirAve;
     surface=1.0;
-    chi_HA=-1000.0;
-    chi_HS=-1000.0;
+    chi_HA=-100.0*Numb_of_Arms;
+    chi_HS=-100.0*Numb_of_Arms;
   }
   
   // 0 read
   // 1 make 
   // 2 random     
-  Iomega=1;
+  Iomega=0;
 
   // Minimize with respect to box size (yes=1, No=0)
   box_min=1;
@@ -38,13 +34,13 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     box_min_z_relax=0;
     box_min_xyz_relax=1;
   }else{
-    box_min_xy_relax=0;
-    box_min_z_relax=1;
+    box_min_xy_relax=1;
+    box_min_z_relax=0;
     box_min_xyz_relax=0; 
   }
 
-  Ns[8]=10;
-  Ns[9]=10;
+  Ns[8]=Numb_of_Arms*N_each_Arm/10.0;
+  Ns[9]=Numb_of_Arms*N_each_Arm/10.0;
   // Degree of polymerization (Each arm of the star is 100)
   if(LAM==1){
     Ns[0]=0.5*N_each_Arm;  // A1
@@ -59,7 +55,8 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   Ds=Ns[0]+Ns[1]+Ns[2]+Ns[3]+Ns[4]+Ns[5]+Ns[6]+Ns[7];
 
   // Setting the generic chi parameters
-  xAB=(0.14)*Ds;
+  xAB=14.0/N_each_Arm;
+  xAB*=Ds;
   chi[0]=xAB;    
   //++++++++++++++++++++++++++++++++++++++++++++++++
   
@@ -96,22 +93,21 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
     if(LAM==1){
       Lx=Numb_of_Periods*Lam_Period;
       Ly=Numb_of_Periods*Lam_Period;
-      Lz=Numb_of_Periods*(Lam_Period+(2.0*(Numb_of_Periods*Lam_Period/Nz)));
+      Lz=Film_LZ_Lam;
     }else if(HEX==1){
       if((VER==1)||(VER_2==1)){
 	Lx=Hex_Period;
 	Ly=Hex_Period*sqrt(3.0);
-	Lz=Numb_of_Periods*(Hex_Period+(2.0*(Numb_of_Periods*Hex_Period/Nz)));
+	Lz=Numb_of_Periods*(Hex_Period+(0.0*(Numb_of_Periods*Hex_Period/Nz)));
       }else{
 	Lx=Hex_Period*sqrt(3.0);
-	Ly=Hex_Period;
-	Lz=Numb_of_Periods*(Hex_Period+(2.0*(Numb_of_Periods*Hex_Period/Nz)));
+	Ly=Hex_Period*sqrt(3.0);
+	Lz=Numb_of_Periods*(Hex_Period+(0.0*(Numb_of_Periods*Hex_Period/Nz)));
       }
     }else{
       std::cout<<"You have not chosen a phase yet."<<std::endl;
     }
   }
- 
   
   if(Round==1){
     dxyz[0]=Lx/Nx;
@@ -120,7 +116,18 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   }else{
     // Will be using the previous dxyz values. The code is looping.
   }
+  FilmThickness=Lz-dxyz[2];
 
+  if(Bulk_Calc==1){
+    pMultiAve=1.0;
+    pAirAve=0.0;
+    pSubAve=0.0;
+  }else{
+    pMultiAve=Set_h_function(h,dxyz);
+    pAirAve=0.5*(1.0-pMultiAve);
+    pSubAve=pAirAve;
+  }
+  
  
   f[0]=Ns[0]/Ds;  // fA1
   f[1]=Ns[1]/Ds;  // fA2
@@ -269,42 +276,10 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   for(i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
       for(k=0;k<Nz;k++){
-	
-	if(k==0){ // k=0 is the substrate surface
-	  h[0][i][j][k]=0.0;
-	  h[1][i][j][k]=0.0;
-	  h[2][i][j][k]=0.0;
-	  h[3][i][j][k]=0.0;
-	  h[4][i][j][k]=0.0;
-	  h[5][i][j][k]=0.0;
-	  h[6][i][j][k]=0.0;
-	  h[7][i][j][k]=0.0;
-	  h[8][i][j][k]=0.0;
-	  h[9][i][j][k]=chi_HS;
-	}else if(k==(Nz-1)){ // k=Nz-1 is the air interface
-	  h[0][i][j][k]=0.0;
-	  h[1][i][j][k]=0.0;
-	  h[2][i][j][k]=0.0;
-	  h[3][i][j][k]=0.0;
-	  h[4][i][j][k]=0.0;
-	  h[5][i][j][k]=0.0;
-	  h[6][i][j][k]=0.0;
-	  h[7][i][j][k]=0.0;
-	  h[8][i][j][k]=chi_HA;
-	  h[9][i][j][k]=0.0;
-	}else{ // No surface interaction in bulk
-	  h[0][i][j][k]=0.0;
-	  h[1][i][j][k]=0.0;
-	  h[2][i][j][k]=0.0;
-	  h[3][i][j][k]=0.0;
-	  h[4][i][j][k]=0.0;
-	  h[5][i][j][k]=0.0;
-	  h[6][i][j][k]=0.0;
-	  h[7][i][j][k]=0.0;
-	  h[8][i][j][k]=0.0;
-	  h[9][i][j][k]=0.0;
-	}
 
+	h[8][i][j][k]*=chi_HA;
+	h[9][i][j][k]*=chi_HS;
+		
       }
     }
   }
@@ -356,15 +331,19 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   std::cout<<" "<<std::endl;
   std::cout<<" "<<std::endl;
   std::cout<<" "<<std::endl;
-  std::cout<<"fA1="<<Ns[0]<<std::endl;
-  std::cout<<"fA2="<<Ns[1]<<std::endl;
-  std::cout<<"fA3="<<Ns[2]<<std::endl;
-  std::cout<<"fA4="<<Ns[3]<<std::endl;
-  std::cout<<"fB1="<<Ns[4]<<std::endl;
-  std::cout<<"fB2="<<Ns[5]<<std::endl;
-  std::cout<<"fB3="<<Ns[6]<<std::endl;
-  std::cout<<"fB4="<<Ns[7]<<std::endl;
+  std::cout<<"NA1="<<Ns[0]<<std::endl;
+  std::cout<<"NA2="<<Ns[1]<<std::endl;
+  std::cout<<"NA3="<<Ns[2]<<std::endl;
+  std::cout<<"NA4="<<Ns[3]<<std::endl;
+  std::cout<<"NB1="<<Ns[4]<<std::endl;
+  std::cout<<"NB2="<<Ns[5]<<std::endl;
+  std::cout<<"NB3="<<Ns[6]<<std::endl;
+  std::cout<<"NB4="<<Ns[7]<<std::endl;
+  std::cout<<"NHA="<<Ns[8]<<std::endl;
+  std::cout<<"NHS="<<Ns[9]<<std::endl;
   std::cout<<"Total="<<Ns[0]+Ns[1]+Ns[2]+Ns[3]+Ns[4]+Ns[5]+Ns[6]+Ns[7]<<std::endl;
+  std::cout<<"kappa_HA="<<kappa_HA<<std::endl;
+  std::cout<<"kappa_HS="<<kappa_HS<<std::endl;
   std::cout<<" "<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
   std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;

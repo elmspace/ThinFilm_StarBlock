@@ -17,9 +17,9 @@
 using namespace std;
  
 
-#define Nx 20
-#define Ny 20
-#define Nz 20
+#define Nx 40
+#define Ny 1
+#define Nz 40
 
 #define ChainType 10
 #define Pi 3.14159
@@ -41,7 +41,9 @@ double Lam_Period;
 double Hex_Period;
 double BCC_Period;
 
+double Film_LZ_Lam, Film_LZ_Hex; //This is the minimized height at neutral interaction
 double FilmThickness;
+double epsilon;
 
 double xBAir;
 int Numb_of_Arms;

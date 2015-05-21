@@ -2,6 +2,7 @@
 #include "./global.hh"
 #include "./ABCDE/Set_ReadIn_Parameters.hh"
 #include "./ABCDE/Arms.hh"
+#include "./ABCDE/Set_h_function.hh"
 #include "./ABCDE/parametersABCD.hh"
 #include "./ABCDE/WaveVectors.hh"
 #include "./ABCDE/omega.hh"

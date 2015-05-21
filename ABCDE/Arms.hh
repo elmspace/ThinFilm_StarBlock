@@ -10,8 +10,10 @@ void Arms(int Numb_of_Arms, double *Ns, int N_each_Arm){
     Ns[6]=0;  // B3              
     Ns[7]=0;  // B4 
     // Setting the size of the period for the system
-    Lam_Period=3.6; 
+    Lam_Period=3.6;
+    Film_LZ_Lam=9.1;
     Hex_Period=3.9;
+
   }else if(Numb_of_Arms==2){ // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Ns[1]=Ns[0];  // A2                                                                                                                      
     Ns[2]=0;  // A3                                                                                                                      
@@ -22,6 +24,7 @@ void Arms(int Numb_of_Arms, double *Ns, int N_each_Arm){
     Ns[7]=0;  // B4
     // Setting the size of the period for the system
     Lam_Period=2.7;
+    Film_LZ_Lam=7.3;
     Hex_Period=3.0;
   }else if(Numb_of_Arms==3){ // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Ns[1]=Ns[0];  // A2                                                                                                                      
@@ -33,6 +36,7 @@ void Arms(int Numb_of_Arms, double *Ns, int N_each_Arm){
     Ns[7]=0;  // B4
     // Setting the size of the period for the system
     Lam_Period=2.3;
+    Film_LZ_Lam=6.0;
     Hex_Period=2.5; 
   }else if(Numb_of_Arms==4){ // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Ns[1]=Ns[0];  // A2                                                                                                                      
@@ -44,6 +48,7 @@ void Arms(int Numb_of_Arms, double *Ns, int N_each_Arm){
     Ns[7]=N_each_Arm-Ns[0];  // B4
     // Setting the size of the period for the system
     Lam_Period=2.0;
+    Film_LZ_Lam=5.4;
     Hex_Period=2.2; 
   }else{
     // Error

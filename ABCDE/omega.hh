@@ -17,9 +17,9 @@ void omega(double ****w){
 	}
       }else{
 	if(LAM==1){
-	  if(HOR==1){infile.open("./OMEGA/READ/Omega_LAM_20_20_20_HOR.read");}
-	  if(VER==1){infile.open("./OMEGA/READ/Omega_LAM_20_20_20_VER.read");}
-	  if(VER_2==1){infile.open("./OMEGA/READ/Omega_LAM_20_20_20_VER_2.read");}
+	  if(HOR==1){infile.open("./OMEGA/READ/Omega_LAM_40_1_40_HOR.read");}
+	  if(VER==1){infile.open("./OMEGA/READ/Omega_LAM_40_1_40_VER.read");}
+	  if(VER_2==1){infile.open("./OMEGA/READ/Omega_LAM_40_1_40_VER_2.read");}
 	}else if(HEX==1){
 	  if(HOR==1){infile.open("./OMEGA/READ/Omega_HEX_20_20_20_HOR.read");}
 	  if(VER==1){infile.open("./OMEGA/READ/Omega_HEX_20_20_20_VER.read");}
@@ -45,8 +45,8 @@ void omega(double ****w){
 	if(HOR==1){
 	  for(i=0;i<Nx;i++){
 	    for(j=0;j<Ny;j++){
-	      for(k=2;k<(Nz-2);k++){
-		w[0][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*k/Nz); //A1
+	      for(k=3;k<(Nz-3);k++){
+		w[0][i][j][k]=50.0*cos(Numb_of_Periods*2.0*Pi*k/Nz); //A1
 		w[1][i][j][k]=w[0][i][j][k]; //A2
 		w[2][i][j][k]=w[0][i][j][k]; //A3
 		w[3][i][j][k]=w[0][i][j][k]; //A4
@@ -57,7 +57,7 @@ void omega(double ****w){
 	  for(i=0;i<Nx;i++){
 	    for(j=0;j<Ny;j++){
 	      for(k=2;k<(Nz-2);k++){
-		w[0][i][j][k]=-1.0*cos(Numb_of_Periods*2.0*Pi*i/Nx); //A1
+		w[0][i][j][k]=-10.0*cos(Numb_of_Periods*2.0*Pi*i/Nx); //A1
 		w[1][i][j][k]=w[0][i][j][k]; //A2
 		w[2][i][j][k]=w[0][i][j][k]; //A3
 		w[3][i][j][k]=w[0][i][j][k]; //A4
@@ -72,7 +72,7 @@ void omega(double ****w){
 	  for(i=0;i<Nx;i++){
 	    for(j=0;j<Ny;j++){
 	      for(k=2;k<(Nz-2);k++){
-		w[0][i][j][k]=-10.0*cos(2.0*Pi*i/Nx)*cos((Numb_of_Periods)*2.0*Pi*k/Nz); //A1
+		w[0][i][j][k]=-10.0*cos(2.0*Pi*i/Nx)*cos(((Numb_of_Periods)*2.0*Pi*k/Nz)); //A1
 		w[1][i][j][k]=w[0][i][j][k]; //A2
 		w[2][i][j][k]=w[0][i][j][k]; //A3
 		w[3][i][j][k]=w[0][i][j][k]; //A4

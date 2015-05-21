@@ -12,8 +12,8 @@ path= mac."Desktop/SCFT_CODES/ThinFilm/ThinFilm_StarBlock/RESULTS/"
 set autoscale
 set key b r
 
-plot   path."MOD1_Hor.dat" using 6:1  title "HOR"with linespoints lt 1,\
- path."MOD1_Ver.dat" using 6:1 title "VER" with linespoints lt 3
+plot   path."MOD1.dat" using 6:1  title "HOR"with linespoints lt 1,\
+path."MOD1_Hor_2.dat" using 6:1 title "VER" with linespoints lt 3
     
     pause(-1)
 
