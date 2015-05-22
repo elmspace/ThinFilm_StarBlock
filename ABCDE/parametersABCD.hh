@@ -60,10 +60,10 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   chi[0]=xAB;    
   //++++++++++++++++++++++++++++++++++++++++++++++++
   
-  h_AAir=surface*(0.0)*Ds;
+  h_AAir=surface*(0.08)*Ds;
   h_BAir=surface*(xBAir)*Ds; // This is a variable
-  h_ASub=surface*(0.0)*Ds;
-  h_BSub=surface*(0.0)*Ds;
+  h_ASub=surface*(0.08)*Ds;
+  h_BSub=surface*(0.06)*Ds;
   
   // setting the global values:
   global_xAB=xAB;
@@ -98,11 +98,11 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
       if((VER==1)||(VER_2==1)){
 	Lx=Hex_Period;
 	Ly=Hex_Period*sqrt(3.0);
-	Lz=Numb_of_Periods*(Hex_Period+(0.0*(Numb_of_Periods*Hex_Period/Nz)));
+	Lz=Film_LZ_Hex;
       }else{
 	Lx=Hex_Period*sqrt(3.0);
 	Ly=Hex_Period*sqrt(3.0);
-	Lz=Numb_of_Periods*(Hex_Period+(0.0*(Numb_of_Periods*Hex_Period/Nz)));
+	Lz=Film_LZ_Hex;
       }
     }else{
       std::cout<<"You have not chosen a phase yet."<<std::endl;

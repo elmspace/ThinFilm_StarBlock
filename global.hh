@@ -17,9 +17,9 @@
 using namespace std;
  
 
-#define Nx 40
-#define Ny 1
-#define Nz 40
+#define Nx 20
+#define Ny 20
+#define Nz 20
 
 #define ChainType 10
 #define Pi 3.14159

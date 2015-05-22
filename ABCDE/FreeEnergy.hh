@@ -42,8 +42,8 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
     currentfE=0.0;
     deltafE=0.0;
   
-    epsilon=0.1; // delta phi
-    gamma=0.1; //delta W
+    epsilon=0.05; // delta phi
+    gamma=0.05; //delta W
   
     iter=0;  
     std::ofstream outputFile2("./RESULTS/Run.dat");
@@ -129,7 +129,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
       
       deltafE=fabs(currentfE-oldfE_iter);
 
-      std::cout<<"Iter="<<iter<<"  fE="<<currentfE<<"  delW=" <<deltaW<<"  delfE="<<currentfE-fE_homo<<std::endl;
+      //std::cout<<"Iter="<<iter<<"  fE="<<currentfE<<"  delW=" <<deltaW<<"  delfE="<<currentfE-fE_homo<<std::endl;
       outputFile2<<iter<<"  "<<currentfE<<"  " <<deltaW<<"  "<<currentfE-fE_homo<<std::endl;
       oldfE_iter=currentfE;
 
@@ -154,7 +154,7 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
     if(box_min_xy_relax==1){size_adjust_2D_xy(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);}
     if(box_min_xyz_relax==1){size_adjust(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);}
 
-    std::cout<<"old_fE="<<oldfE<<" currentfE="<<currentfE<<" deltafE="<<(abs(oldfE)-abs(currentfE))<<std::endl;
+    //std::cout<<"old_fE="<<oldfE<<" currentfE="<<currentfE<<" deltafE="<<(abs(oldfE)-abs(currentfE))<<std::endl;
     
     if((oldfE<currentfE)||((abs(oldfE-currentfE))<1.0e-4)){
       msg=0;
