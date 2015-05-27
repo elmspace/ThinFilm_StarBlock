@@ -25,7 +25,7 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
   // 0 read
   // 1 make 
   // 2 random     
-  Iomega=0;
+  Iomega=1;
 
   // Minimize with respect to box size (yes=1, No=0)
   box_min=1;
@@ -96,8 +96,8 @@ void parametersAB(double *chi,double *f,double &ds,double *Ns,double *dxyz,doubl
       Lz=Film_LZ_Lam;
     }else if(HEX==1){
       if((VER==1)||(VER_2==1)){
-	Lx=Hex_Period;
-	Ly=Hex_Period*sqrt(3.0);
+	Lx=Hex_Period*sqrt(3.0);
+	Ly=Hex_Period;
 	Lz=Film_LZ_Hex;
       }else{
 	Lx=Hex_Period*sqrt(3.0);

@@ -13,7 +13,7 @@ void Arms(int Numb_of_Arms, double *Ns, int N_each_Arm){
     Lam_Period=3.6;
     Film_LZ_Lam=9.1;
     Hex_Period=3.9;
-    Film_LZ_Hex=9.1;
+    Film_LZ_Hex=9.1; 
   }else if(Numb_of_Arms==2){ // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Ns[1]=Ns[0];  // A2                                                                                                                      
     Ns[2]=0;  // A3                                                                                                                      
@@ -26,7 +26,7 @@ void Arms(int Numb_of_Arms, double *Ns, int N_each_Arm){
     Lam_Period=2.7;
     Film_LZ_Lam=7.3;
     Hex_Period=3.0;
-    Film_LZ_Hex=7.0;
+    Film_LZ_Hex=6.8;
   }else if(Numb_of_Arms==3){ // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Ns[1]=Ns[0];  // A2                                                                                                                      
     Ns[2]=Ns[0];  // A3                                                                                                                      
@@ -39,7 +39,7 @@ void Arms(int Numb_of_Arms, double *Ns, int N_each_Arm){
     Lam_Period=2.3;
     Film_LZ_Lam=6.0;
     Hex_Period=2.5;
-    Film_LZ_Hex=5.9;
+    Film_LZ_Hex=5.95; 
   }else if(Numb_of_Arms==4){ // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Ns[1]=Ns[0];  // A2                                                                                                                      
     Ns[2]=Ns[0];  // A3                                                                                                                      

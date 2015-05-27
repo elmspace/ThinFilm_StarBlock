@@ -1,9 +1,9 @@
 void Mod1(double ****w, double ****phi, double ***eta, double *Ns, double ds, double ***k_vector, double *chi, double *dxyz, double **chiMatrix, double ****h, double *f){
 
-  double del_xBAir=(0.025);
-  double max_xBAir=1.0;
+  double del_xBAir=(0.01);
+  double max_xBAir=0.21;
 
-  int do_1_calc=0; // if =1 this will just do one calculation, if =0 it will break and wont continue
+  int do_1_calc=1; // if =1 this will just do one calculation, if =0 it will break and wont continue
   Bulk_Calc=0; // Bulk_Calc=1 will do a 1period system in bulk
 
   
@@ -28,7 +28,6 @@ void Mod1(double ****w, double ****phi, double ***eta, double *Ns, double ds, do
     if(do_1_calc==1){break;}
     xBAir+=del_xBAir;
 
-    
     Round++;
   }while(xBAir<max_xBAir);
     

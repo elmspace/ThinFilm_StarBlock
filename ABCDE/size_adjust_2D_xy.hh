@@ -1,4 +1,4 @@
-double size_adjust_2D_xy(double ****w, double ****phi, double ***eta, double *Ns, double ds, double ***k_vector, double *chi, double *dxyz, double **chiMatrix){
+void size_adjust_2D_xy(double ****w, double ****phi, double ***eta, double *Ns, double ds, double ***k_vector, double *chi, double *dxyz, double **chiMatrix){
 
   int     i,j,k,l,ii,jj,ll,kk;
   double  delx,dely;
@@ -74,16 +74,14 @@ double size_adjust_2D_xy(double ****w, double ****phi, double ***eta, double *Ns
   dxyz[1]=dxyz[1]+box_y[i];
 
   //std::cout<<i<<std::endl;
-  
-  box=1;
-  
+   
   destroy_1d_double_array(dxyz_temp);
   destroy_1d_double_array(box_x);
   destroy_1d_double_array(box_y);
   destroy_1d_double_array(box_fE);
   destroy_4d_double_array(w_temp);
 
-  return box;
+  return;
   
 };
 
