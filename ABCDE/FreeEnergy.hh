@@ -42,8 +42,8 @@ void FreeEnergy(double ****w, double ****phi, double ***eta, double *Ns, double 
     currentfE=0.0;
     deltafE=0.0;
   
-    epsilon=0.1; // delta phi
-    gamma=0.1; //delta W
+    epsilon=0.05; // delta phi
+    gamma=0.05; //delta W
   
     iter=0;  
     std::ofstream outputFile2("./RESULTS/Run.dat");
